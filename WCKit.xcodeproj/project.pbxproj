@@ -35,6 +35,7 @@
 		4CA1E79028761BA7003835DB /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		4CA1E79228761BEB003835DB /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 		4CA1E79428761CA7003835DB /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		4CB41C692876257000B9ACF7 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		4CDF659428760A2700C972DA /* WCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CDF659728760A2700C972DA /* WCKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCKit.h; sourceTree = "<group>"; };
 		4CDF65A528760E2400C972DA /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -64,7 +65,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4CA1E79628761CEC003835DB /* Foundation */ = {
+		4CA1E79628761CEC003835DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				4CDF65B52876132B00C972DA /* AtomicInteger.swift */,
@@ -76,7 +77,7 @@
 				4CDF65AF28760FFF00C972DA /* StringExtension.swift */,
 				4CDF65BD2876153B00C972DA /* WCError.swift */,
 			);
-			path = Foundation;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		4CA1E79728761D0E003835DB /* Views */ = {
@@ -93,17 +94,10 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		4CA1E79828761D3B003835DB /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				4CDF65B32876115000C972DA /* PersistenceController.swift */,
-			);
-			path = Persistence;
-			sourceTree = "<group>";
-		};
 		4CA1E79928761D6A003835DB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4CDF65B32876115000C972DA /* PersistenceController.swift */,
 				4CDF65B72876136600C972DA /* AttributedStringBuilder.swift */,
 				4CA1E79228761BEB003835DB /* Runtime.swift */,
 				4CDF65B92876137B00C972DA /* Symbol.swift */,
@@ -131,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				4CDF659728760A2700C972DA /* WCKit.h */,
-				4CA1E79628761CEC003835DB /* Foundation */,
-				4CA1E79828761D3B003835DB /* Persistence */,
+				4CB41C692876257000B9ACF7 /* Package.swift */,
+				4CA1E79628761CEC003835DB /* Core */,
 				4CA1E79928761D6A003835DB /* Utils */,
 				4CA1E79728761D0E003835DB /* Views */,
 			);
@@ -411,7 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wellsconsulting.WCKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -444,7 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wellsconsulting.WCKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
