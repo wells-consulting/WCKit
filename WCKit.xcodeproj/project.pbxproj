@@ -105,6 +105,17 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		4CA1E79A287628A7003835DB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4CA1E79628761CEC003835DB /* Core */,
+				4CA1E79928761D6A003835DB /* Utils */,
+				4CA1E79728761D0E003835DB /* Views */,
+				4CDF659728760A2700C972DA /* WCKit.h */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		4CDF658A28760A2700C972DA = {
 			isa = PBXGroup;
 			children = (
@@ -124,11 +135,8 @@
 		4CDF659628760A2700C972DA /* WCKit */ = {
 			isa = PBXGroup;
 			children = (
-				4CDF659728760A2700C972DA /* WCKit.h */,
+				4CA1E79A287628A7003835DB /* Sources */,
 				4CB41C692876257000B9ACF7 /* Package.swift */,
-				4CA1E79628761CEC003835DB /* Core */,
-				4CA1E79928761D6A003835DB /* Utils */,
-				4CA1E79728761D0E003835DB /* Views */,
 			);
 			path = WCKit;
 			sourceTree = "<group>";
