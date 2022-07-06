@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.6
 
 // Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
