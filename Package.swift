@@ -18,7 +18,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "WCKit",
-            path: "./Frameworks/WCKit.xcframework"
+            path: "WCKit",
+            sources: ["Core", "Utils", "Views"]
         )
     ]
 )
