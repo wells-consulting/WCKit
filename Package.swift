@@ -1,3 +1,5 @@
+// swift-tools-version:5.3
+
 // Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import PackageDescription
@@ -11,7 +13,7 @@ let package = Package(
         .library(
             name: "WCKit",
             targets: ["WCKit"]
-        ),
+        )
     ],
     targets: [
         .binaryTarget(

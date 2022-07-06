@@ -50,7 +50,6 @@
 		4CB41C7F28762C4D00B9ACF7 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		4CB41C8028762C4D00B9ACF7 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		4CB41C8128762C4D00B9ACF7 /* IntegerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerExtension.swift; sourceTree = "<group>"; };
-		4CB41C9628762C8100B9ACF7 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		4CDF659428760A2700C972DA /* WCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,7 +127,6 @@
 				4CB41C6B28762C4D00B9ACF7 /* Utils */,
 				4CB41C7028762C4D00B9ACF7 /* Views */,
 				4CB41C7828762C4D00B9ACF7 /* WCKit.h */,
-				4CB41C9628762C8100B9ACF7 /* Package.swift */,
 			);
 			path = WCKit;
 			sourceTree = "<group>";
