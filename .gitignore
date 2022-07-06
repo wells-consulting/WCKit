@@ -2,7 +2,6 @@ spm/**
 build/**
 **/xcuserdata/**
 *.swp
-C2S/C2S.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+WCKit.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 .DS_Store
 default.profraw
-/vendor/bundle
