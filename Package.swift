@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.6
 
 // Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
@@ -7,7 +7,7 @@ import PackageDescription
 let package = Package(
     name: "WCKit",
     platforms: [
-        .macOS(.v10_15), .iOS(.v15), .tvOS(.v15)
+        .macOS(.v10_15), .iOS(.v15)
     ],
     products: [
         .library(
