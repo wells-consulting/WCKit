@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-class WCTableView: UITableView {
+public final class WCTableView: UITableView {
     private static let smallVerticalPadding: CGFloat = 16.0
     private static let largeVerticalPadding: CGFloat = 20.0
     private static let spacing: CGFloat = 16.0
@@ -25,7 +25,7 @@ class WCTableView: UITableView {
         tableHeaderView = UIView(frame: emptyRect)
     }
 
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
 
         separatorStyle = .singleLine

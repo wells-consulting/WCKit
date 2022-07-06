@@ -5,7 +5,7 @@ import UIKit
 let margin: CGFloat = 8.0
 
 @IBDesignable
-final class AppBadge: UILabel {
+public final class AppBadge: UILabel {
     var textInsets = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin) {
         didSet { invalidateIntrinsicContentSize() }
     }
@@ -25,7 +25,7 @@ final class AppBadge: UILabel {
         self.textInsets = textInsets
     }
 
-    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         if text == nil {
             return super.textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
         }
@@ -42,7 +42,7 @@ final class AppBadge: UILabel {
         return textRect.inset(by: invertedInsets)
     }
 
-    override func drawText(in rect: CGRect) {
+    public override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: textInsets))
     }
 
