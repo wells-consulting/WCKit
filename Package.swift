@@ -16,10 +16,9 @@ let package = Package(
         )
     ],
     targets: [
-        .binaryTarget(
+        .target(
             name: "WCKit",
-            path: "WCKit",
-            sources: ["Core", "Utils", "Views"]
+            path: "WCKit"
         )
     ]
 )
