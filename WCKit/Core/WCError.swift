@@ -3,13 +3,13 @@
 import Foundation
 
 public struct WCError: LocalizedError {
-    static var unresolved = "Unresolved Error"
+    static var unresolved = WCError("Unresolved Error")
 
     let summary: String?
     public let errorDescription: String?
 
     init(_ error: Error) {
-        summary = Self.unresolved
+        summary = "Unresolved Error"
         if let nsError = error as NSError? {
             errorDescription = "Unresolved error \(nsError), \(nsError.userInfo)"
         } else {

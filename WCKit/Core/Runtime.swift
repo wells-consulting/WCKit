@@ -2,6 +2,7 @@
 
 import Foundation
 import UIKit
+import OSLog
 
 public enum Runtime {
     static var bundleIdentifier: String = Bundle.main.bundleIdentifier!
@@ -23,6 +24,8 @@ public enum Runtime {
             return false
         }
     }
+    
+    static var deviceName: String { UIDevice.current.name }
 
     static var deviceModelName: String { UIDevice.current.localizedModel }
 

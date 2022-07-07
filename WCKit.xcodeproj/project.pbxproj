@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C7F5E4B287723A100B9DE80 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E4A287723A100B9DE80 /* HTTP.swift */; };
+		4C7F5E4E2877244900B9DE80 /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E4D2877244900B9DE80 /* HTTPError.swift */; };
+		4C7F5E502877245F00B9DE80 /* HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E4F2877245F00B9DE80 /* HTTPStatus.swift */; };
+		4C7F5E52287729FE00B9DE80 /* HTTPPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E51287729FE00B9DE80 /* HTTPPayload.swift */; };
+		4C7F5E5428772A2200B9DE80 /* MultipartForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E5328772A2200B9DE80 /* MultipartForm.swift */; };
+		4C7F5E5D28772E8900B9DE80 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E5C28772E8900B9DE80 /* Log.swift */; };
+		4C7F5E64287734E300B9DE80 /* HTTPRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E63287734E300B9DE80 /* HTTPRequestBuilder.swift */; };
+		4C7F5E6628774C8400B9DE80 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E6528774C8400B9DE80 /* DataExtension.swift */; };
 		4CB41C8228762C4D00B9ACF7 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */; };
 		4CB41C8328762C4D00B9ACF7 /* AttributedStringBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C6D28762C4D00B9ACF7 /* AttributedStringBuilder.swift */; };
 		4CB41C8428762C4D00B9ACF7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */; };
@@ -30,6 +38,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C7F5E4A287723A100B9DE80 /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		4C7F5E4D2877244900B9DE80 /* HTTPError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
+		4C7F5E4F2877245F00B9DE80 /* HTTPStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatus.swift; sourceTree = "<group>"; };
+		4C7F5E51287729FE00B9DE80 /* HTTPPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPPayload.swift; sourceTree = "<group>"; };
+		4C7F5E5328772A2200B9DE80 /* MultipartForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartForm.swift; sourceTree = "<group>"; };
+		4C7F5E5C28772E8900B9DE80 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		4C7F5E63287734E300B9DE80 /* HTTPRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestBuilder.swift; sourceTree = "<group>"; };
+		4C7F5E6528774C8400B9DE80 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 		4CB41C6D28762C4D00B9ACF7 /* AttributedStringBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedStringBuilder.swift; sourceTree = "<group>"; };
 		4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
@@ -64,11 +80,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C7F5E4C2877242D00B9DE80 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				4C7F5E4A287723A100B9DE80 /* HTTP.swift */,
+				4C7F5E4D2877244900B9DE80 /* HTTPError.swift */,
+				4C7F5E51287729FE00B9DE80 /* HTTPPayload.swift */,
+				4C7F5E63287734E300B9DE80 /* HTTPRequestBuilder.swift */,
+				4C7F5E4F2877245F00B9DE80 /* HTTPStatus.swift */,
+				4C7F5E5328772A2200B9DE80 /* MultipartForm.swift */,
+			);
+			path = HTTP;
+			sourceTree = "<group>";
+		};
 		4CB41C6B28762C4D00B9ACF7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */,
 				4CB41C6D28762C4D00B9ACF7 /* AttributedStringBuilder.swift */,
+				4C7F5E5C28772E8900B9DE80 /* Log.swift */,
 				4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */,
 				4CB41C6F28762C4D00B9ACF7 /* Symbol.swift */,
 			);
@@ -78,13 +107,13 @@
 		4CB41C7028762C4D00B9ACF7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4CB41C7128762C4D00B9ACF7 /* UIColorExtension.swift */,
-				4CB41C7228762C4D00B9ACF7 /* WCTableView.swift */,
-				4CB41C7328762C4D00B9ACF7 /* UIViewControllerExtension.swift */,
-				4CB41C7428762C4D00B9ACF7 /* UITableViewExtension.swift */,
-				4CB41C7528762C4D00B9ACF7 /* UIViewExtension.swift */,
-				4CB41C7628762C4D00B9ACF7 /* UIImageExtension.swift */,
 				4CB41C7728762C4D00B9ACF7 /* Badge.swift */,
+				4CB41C7128762C4D00B9ACF7 /* UIColorExtension.swift */,
+				4CB41C7628762C4D00B9ACF7 /* UIImageExtension.swift */,
+				4CB41C7428762C4D00B9ACF7 /* UITableViewExtension.swift */,
+				4CB41C7328762C4D00B9ACF7 /* UIViewControllerExtension.swift */,
+				4CB41C7528762C4D00B9ACF7 /* UIViewExtension.swift */,
+				4CB41C7228762C4D00B9ACF7 /* WCTableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,6 +121,8 @@
 		4CB41C7928762C4D00B9ACF7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4C7F5E4C2877242D00B9DE80 /* HTTP */,
+				4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */,
 				4CB41C7A28762C4D00B9ACF7 /* AtomicInteger.swift */,
 				4CB41C7B28762C4D00B9ACF7 /* WCError.swift */,
 				4CB41C7C28762C4D00B9ACF7 /* JSON.swift */,
@@ -100,6 +131,7 @@
 				4CB41C7F28762C4D00B9ACF7 /* DoubleExtension.swift */,
 				4CB41C8028762C4D00B9ACF7 /* DateExtension.swift */,
 				4CB41C8128762C4D00B9ACF7 /* IntegerExtension.swift */,
+				4C7F5E6528774C8400B9DE80 /* DataExtension.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -234,21 +266,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C7F5E5D28772E8900B9DE80 /* Log.swift in Sources */,
 				4CB41C8428762C4D00B9ACF7 /* PersistenceController.swift in Sources */,
 				4CB41C9328762C4D00B9ACF7 /* DoubleExtension.swift in Sources */,
 				4CB41C9028762C4D00B9ACF7 /* JSON.swift in Sources */,
 				4CB41C8E28762C4D00B9ACF7 /* AtomicInteger.swift in Sources */,
 				4CB41C8728762C4D00B9ACF7 /* WCTableView.swift in Sources */,
+				4C7F5E502877245F00B9DE80 /* HTTPStatus.swift in Sources */,
+				4C7F5E6628774C8400B9DE80 /* DataExtension.swift in Sources */,
+				4C7F5E4B287723A100B9DE80 /* HTTP.swift in Sources */,
 				4CB41C9228762C4D00B9ACF7 /* StringExtension.swift in Sources */,
+				4C7F5E52287729FE00B9DE80 /* HTTPPayload.swift in Sources */,
 				4CB41C9528762C4D00B9ACF7 /* IntegerExtension.swift in Sources */,
 				4CB41C8C28762C4D00B9ACF7 /* Badge.swift in Sources */,
 				4CB41C8528762C4D00B9ACF7 /* Symbol.swift in Sources */,
+				4C7F5E64287734E300B9DE80 /* HTTPRequestBuilder.swift in Sources */,
+				4C7F5E5428772A2200B9DE80 /* MultipartForm.swift in Sources */,
 				4CB41C9128762C4D00B9ACF7 /* DecimalExtension.swift in Sources */,
 				4CB41C8F28762C4D00B9ACF7 /* WCError.swift in Sources */,
 				4CB41C8B28762C4D00B9ACF7 /* UIImageExtension.swift in Sources */,
 				4CB41C8928762C4D00B9ACF7 /* UITableViewExtension.swift in Sources */,
 				4CB41C8628762C4D00B9ACF7 /* UIColorExtension.swift in Sources */,
 				4CB41C9428762C4D00B9ACF7 /* DateExtension.swift in Sources */,
+				4C7F5E4E2877244900B9DE80 /* HTTPError.swift in Sources */,
 				4CB41C8328762C4D00B9ACF7 /* AttributedStringBuilder.swift in Sources */,
 				4CB41C8A28762C4D00B9ACF7 /* UIViewExtension.swift in Sources */,
 				4CB41C8828762C4D00B9ACF7 /* UIViewControllerExtension.swift in Sources */,
