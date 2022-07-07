@@ -108,7 +108,7 @@ public final class HTTPRequestBuilder {
         _ data: Data?
     ) throws -> Value {
         guard let data = data else {
-            let error = WCError("\(Value.self) could not be created: no data")
+            let error = WCKitError("\(Value.self) could not be created: no data")
             throw error
         }
 
@@ -194,7 +194,7 @@ extension HTTPRequestBuilder {
             let response = response,
             let jsonObject = JSONSerialization.decode(response)
         else {
-            throw WCError("Returned data not JSON")
+            throw WCKitError("Returned data not JSON")
         }
         
         return jsonObject

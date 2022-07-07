@@ -21,11 +21,11 @@ public final class PersistenceController {
 
     // MARK: Lifetime
 
-    init() {
+    init(name: String) {
         ArrayValueTransformer.register()
 
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let persistantStoreURL = documentsURL.appendingPathComponent("WCKit")
+        let persistantStoreURL = documentsURL.appendingPathComponent(name)
         let bundles = [Bundle(for: Self.self)]
 
         guard let model = NSManagedObjectModel.mergedModel(from: bundles) else {

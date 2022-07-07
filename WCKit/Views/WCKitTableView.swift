@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-public final class WCTableView: UITableView {
+public final class WCKitTableView: UITableView {
     private static let smallVerticalPadding: CGFloat = 16.0
     private static let largeVerticalPadding: CGFloat = 20.0
     private static let spacing: CGFloat = 16.0
@@ -124,17 +124,17 @@ public final class WCTableView: UITableView {
 
             symbolImageView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
-                constant: WCTableView.spacing
+                constant: WCKitTableView.spacing
             ).isActive = true
 
             symbolImageView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: WCTableView.largeVerticalPadding
+                constant: WCKitTableView.largeVerticalPadding
             ).isActive = true
 
             symbolImageView.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: WCTableView.largeVerticalPadding
+                constant: WCKitTableView.largeVerticalPadding
             ).isActive = true
 
             symbolImageView.centerYAnchor.constraint(
@@ -143,7 +143,7 @@ public final class WCTableView: UITableView {
 
             label.leadingAnchor.constraint(
                 equalTo: symbolImageView.layoutMarginsGuide.trailingAnchor,
-                constant: WCTableView.spacing
+                constant: WCKitTableView.spacing
             ).isActive = true
 
             label.trailingAnchor.constraint(
@@ -152,12 +152,12 @@ public final class WCTableView: UITableView {
 
             label.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: WCTableView.largeVerticalPadding
+                constant: WCKitTableView.largeVerticalPadding
             ).isActive = true
 
             label.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: WCTableView.largeVerticalPadding
+                constant: WCKitTableView.largeVerticalPadding
             ).isActive = true
         }
 
@@ -201,12 +201,12 @@ public final class WCTableView: UITableView {
 
             spinner.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: WCTableView.largeVerticalPadding
+                constant: WCKitTableView.largeVerticalPadding
             ).isActive = true
 
             spinner.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: WCTableView.largeVerticalPadding
+                constant: WCKitTableView.largeVerticalPadding
             ).isActive = true
 
             spinner.centerYAnchor.constraint(
@@ -215,7 +215,7 @@ public final class WCTableView: UITableView {
 
             label.leadingAnchor.constraint(
                 equalTo: spinner.trailingAnchor,
-                constant: WCTableView.spacing
+                constant: WCKitTableView.spacing
             ).isActive = true
 
             label.trailingAnchor.constraint(
@@ -282,17 +282,17 @@ public final class WCTableView: UITableView {
 
             symbolImageView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: WCTableView.smallVerticalPadding
+                constant: WCKitTableView.smallVerticalPadding
             ).isActive = true
 
             symbolImageView.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: WCTableView.smallVerticalPadding
+                constant: WCKitTableView.smallVerticalPadding
             ).isActive = true
 
             label.leadingAnchor.constraint(
                 equalTo: symbolImageView.trailingAnchor,
-                constant: WCTableView.spacing
+                constant: WCKitTableView.spacing
             ).isActive = true
 
             label.trailingAnchor.constraint(
@@ -305,12 +305,12 @@ public final class WCTableView: UITableView {
 
             label.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: WCTableView.smallVerticalPadding
+                constant: WCKitTableView.smallVerticalPadding
             ).isActive = true
 
             label.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: WCTableView.smallVerticalPadding
+                constant: WCKitTableView.smallVerticalPadding
             ).isActive = true
         }
 
@@ -336,7 +336,7 @@ extension UITableView {
     }
 
     func makeLoadingCellFor(_ indexPath: IndexPath, text: String = "Loading...") -> UITableViewCell {
-        let cell: WCTableView.LoadingTVC = makeCellFor(indexPath)
+        let cell: WCKitTableView.LoadingTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
@@ -346,7 +346,7 @@ extension UITableView {
     }
 
     func makeTextCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
-        let cell: WCTableView.TextTVC = makeCellFor(indexPath)
+        let cell: WCKitTableView.TextTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
@@ -356,7 +356,7 @@ extension UITableView {
         text: String,
         isSelected: Bool
     ) -> UITableViewCell {
-        let cell: WCTableView.SelectListTVC = makeCellFor(indexPath)
+        let cell: WCKitTableView.SelectListTVC = makeCellFor(indexPath)
         cell.configure(text: text, isSelected: isSelected)
         return cell
     }
@@ -366,7 +366,7 @@ extension UITableView {
     }
 
     func makeErrorCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
-        let cell: WCTableView.ErrorTVC = makeCellFor(indexPath)
+        let cell: WCKitTableView.ErrorTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
