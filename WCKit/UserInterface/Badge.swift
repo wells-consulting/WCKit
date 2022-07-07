@@ -5,7 +5,7 @@ import UIKit
 let margin: CGFloat = 8.0
 
 @IBDesignable
-public final class AppBadge: UILabel {
+public final class Badge: UILabel {
     var textInsets = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin) {
         didSet { invalidateIntrinsicContentSize() }
     }

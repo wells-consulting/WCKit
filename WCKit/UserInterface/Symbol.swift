@@ -119,6 +119,7 @@ public extension Symbol {
         case item = "tag.fill"
         case makeDocument = "doc.fill.badge.plus"
         case map = "map.fill"
+        case menubarIndicator = "arrow.forward.square.fill"
         case order = "bag.badge.plus"
         case package = "shippingbox.fill"
         case pallet = "square.stack.3d.up"

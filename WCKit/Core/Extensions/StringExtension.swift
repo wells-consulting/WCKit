@@ -168,3 +168,35 @@ public extension String {
         }
     }
 }
+
+extension NSAttributedString {
+    static var nonBreakingSpace: NSAttributedString { NSAttributedString(string: "\u{202F}") }
+}
+
+// MARK: - SummaryConvertible
+
+extension String: SummaryConvertible {
+    var summary: String? { self }
+}
+
+// MARK: Click in String
+
+extension RangeExpression where Bound == String.Index {
+    func nsRange<S: StringProtocol>(in string: S) -> NSRange { .init(self, in: string) }
+}
+
+extension StringProtocol {
+    func nsRange<S: StringProtocol>(
+        of string: S,
+        options: String.CompareOptions = [],
+        range: Range<Index>? = nil,
+        locale: Locale? = nil
+    ) -> NSRange? {
+        self.range(
+            of: string,
+            options: options,
+            range: range ?? startIndex ..< endIndex,
+            locale: locale ?? .current
+        )?.nsRange(in: self)
+    }
+}
