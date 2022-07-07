@@ -2,8 +2,8 @@
 
 import Foundation
 
-public struct WCKitError: LocalizedError {
-    static var unresolved = WCKitError("Unresolved Error")
+public struct AppError: LocalizedError {
+    static var unresolved = AppError("Unresolved Error")
 
     let summary: String?
     public let errorDescription: String?

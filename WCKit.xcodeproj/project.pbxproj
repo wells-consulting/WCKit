@@ -20,7 +20,7 @@
 		4CB41C8428762C4D00B9ACF7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */; };
 		4CB41C8528762C4D00B9ACF7 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C6F28762C4D00B9ACF7 /* Symbol.swift */; };
 		4CB41C8628762C4D00B9ACF7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7128762C4D00B9ACF7 /* UIColorExtension.swift */; };
-		4CB41C8728762C4D00B9ACF7 /* WCKitTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7228762C4D00B9ACF7 /* WCKitTableView.swift */; };
+		4CB41C8728762C4D00B9ACF7 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7228762C4D00B9ACF7 /* TableView.swift */; };
 		4CB41C8828762C4D00B9ACF7 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7328762C4D00B9ACF7 /* UIViewControllerExtension.swift */; };
 		4CB41C8928762C4D00B9ACF7 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7428762C4D00B9ACF7 /* UITableViewExtension.swift */; };
 		4CB41C8A28762C4D00B9ACF7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7528762C4D00B9ACF7 /* UIViewExtension.swift */; };
@@ -28,7 +28,7 @@
 		4CB41C8C28762C4D00B9ACF7 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7728762C4D00B9ACF7 /* Badge.swift */; };
 		4CB41C8D28762C4D00B9ACF7 /* WCKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CB41C7828762C4D00B9ACF7 /* WCKit.h */; };
 		4CB41C8E28762C4D00B9ACF7 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7A28762C4D00B9ACF7 /* AtomicInteger.swift */; };
-		4CB41C8F28762C4D00B9ACF7 /* WCKitError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7B28762C4D00B9ACF7 /* WCKitError.swift */; };
+		4CB41C8F28762C4D00B9ACF7 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7B28762C4D00B9ACF7 /* AppError.swift */; };
 		4CB41C9028762C4D00B9ACF7 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7C28762C4D00B9ACF7 /* JSON.swift */; };
 		4CB41C9128762C4D00B9ACF7 /* DecimalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7D28762C4D00B9ACF7 /* DecimalExtension.swift */; };
 		4CB41C9228762C4D00B9ACF7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7E28762C4D00B9ACF7 /* StringExtension.swift */; };
@@ -51,7 +51,7 @@
 		4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		4CB41C6F28762C4D00B9ACF7 /* Symbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
 		4CB41C7128762C4D00B9ACF7 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		4CB41C7228762C4D00B9ACF7 /* WCKitTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCKitTableView.swift; sourceTree = "<group>"; };
+		4CB41C7228762C4D00B9ACF7 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		4CB41C7328762C4D00B9ACF7 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		4CB41C7428762C4D00B9ACF7 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		4CB41C7528762C4D00B9ACF7 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		4CB41C7728762C4D00B9ACF7 /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		4CB41C7828762C4D00B9ACF7 /* WCKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCKit.h; sourceTree = "<group>"; };
 		4CB41C7A28762C4D00B9ACF7 /* AtomicInteger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
-		4CB41C7B28762C4D00B9ACF7 /* WCKitError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCKitError.swift; sourceTree = "<group>"; };
+		4CB41C7B28762C4D00B9ACF7 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		4CB41C7C28762C4D00B9ACF7 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		4CB41C7D28762C4D00B9ACF7 /* DecimalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecimalExtension.swift; sourceTree = "<group>"; };
 		4CB41C7E28762C4D00B9ACF7 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 				4CB41C7428762C4D00B9ACF7 /* UITableViewExtension.swift */,
 				4CB41C7328762C4D00B9ACF7 /* UIViewControllerExtension.swift */,
 				4CB41C7528762C4D00B9ACF7 /* UIViewExtension.swift */,
-				4CB41C7228762C4D00B9ACF7 /* WCKitTableView.swift */,
+				4CB41C7228762C4D00B9ACF7 /* TableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,7 +124,7 @@
 				4C7F5E4C2877242D00B9DE80 /* HTTP */,
 				4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */,
 				4CB41C7A28762C4D00B9ACF7 /* AtomicInteger.swift */,
-				4CB41C7B28762C4D00B9ACF7 /* WCKitError.swift */,
+				4CB41C7B28762C4D00B9ACF7 /* AppError.swift */,
 				4CB41C7C28762C4D00B9ACF7 /* JSON.swift */,
 				4CB41C7D28762C4D00B9ACF7 /* DecimalExtension.swift */,
 				4CB41C7E28762C4D00B9ACF7 /* StringExtension.swift */,
@@ -271,7 +271,7 @@
 				4CB41C9328762C4D00B9ACF7 /* DoubleExtension.swift in Sources */,
 				4CB41C9028762C4D00B9ACF7 /* JSON.swift in Sources */,
 				4CB41C8E28762C4D00B9ACF7 /* AtomicInteger.swift in Sources */,
-				4CB41C8728762C4D00B9ACF7 /* WCKitTableView.swift in Sources */,
+				4CB41C8728762C4D00B9ACF7 /* TableView.swift in Sources */,
 				4C7F5E502877245F00B9DE80 /* HTTPStatus.swift in Sources */,
 				4C7F5E6628774C8400B9DE80 /* DataExtension.swift in Sources */,
 				4C7F5E4B287723A100B9DE80 /* HTTP.swift in Sources */,
@@ -283,7 +283,7 @@
 				4C7F5E64287734E300B9DE80 /* HTTPRequestBuilder.swift in Sources */,
 				4C7F5E5428772A2200B9DE80 /* MultipartForm.swift in Sources */,
 				4CB41C9128762C4D00B9ACF7 /* DecimalExtension.swift in Sources */,
-				4CB41C8F28762C4D00B9ACF7 /* WCKitError.swift in Sources */,
+				4CB41C8F28762C4D00B9ACF7 /* AppError.swift in Sources */,
 				4CB41C8B28762C4D00B9ACF7 /* UIImageExtension.swift in Sources */,
 				4CB41C8928762C4D00B9ACF7 /* UITableViewExtension.swift in Sources */,
 				4CB41C8628762C4D00B9ACF7 /* UIColorExtension.swift in Sources */,
