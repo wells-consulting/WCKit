@@ -3,7 +3,7 @@
 import Foundation
 
 public enum HTTP {
-    enum Method: String {
+    public enum Method: String {
         case delete = "DELETE"
         case get = "GET"
         case patch = "PATCH"
@@ -13,7 +13,7 @@ public enum HTTP {
 
     //
 
-    struct Header: Hashable {
+    public struct Header: Hashable {
         let value: String
         let field: String
         init(value: String, field: String) {
@@ -21,26 +21,26 @@ public enum HTTP {
             self.field = field
         }
 
-        static func == (lhs: Header, rhs: Header) -> Bool {
+        public static func == (lhs: Header, rhs: Header) -> Bool {
             lhs.field.uppercased() == rhs.field.uppercased()
         }
 
-        func hash(into hasher: inout Hasher) {
+        public func hash(into hasher: inout Hasher) {
             hasher.combine(field.uppercased())
         }
     }
 
     //
 
-    static let multipartFormBoundary = "AEE829AB-96ED-4566-9801-BBD497C33F7E"
+    public static let multipartFormBoundary = "AEE829AB-96ED-4566-9801-BBD497C33F7E"
 
-    enum ContentType {
+    public enum ContentType {
         case json
         case multipartForm
         case text
         case binary
 
-        var header: HTTP.Header {
+        public var header: HTTP.Header {
             switch self {
             case .json:
                 return HTTP.Header(value: "application/json", field: "Content-Type")
@@ -192,7 +192,7 @@ public enum HTTP {
 
     // MARK: - HTTP Verbs
 
-    static func get(
+    public static func get(
         _ url: URL,
         payload: HTTPPayload,
         headers: [Header]
@@ -205,7 +205,7 @@ public enum HTTP {
         )
     }
 
-    static func patch(
+    public static func patch(
         _ url: URL,
         payload: HTTPPayload,
         headers: [Header]
@@ -218,7 +218,7 @@ public enum HTTP {
         )
     }
 
-    static func post(
+    public static func post(
         _ url: URL,
         payload: HTTPPayload,
         headers: [Header]
@@ -231,7 +231,7 @@ public enum HTTP {
         )
     }
 
-    static func put(
+    public static func put(
         _ url: URL,
         payload: HTTPPayload,
         headers: [Header]
@@ -244,7 +244,7 @@ public enum HTTP {
         )
     }
 
-    static func delete(
+    public static func delete(
         _ url: URL,
         payload: HTTPPayload,
         headers: [Header]

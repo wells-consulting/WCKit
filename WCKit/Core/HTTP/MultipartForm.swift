@@ -13,17 +13,17 @@ public final class MultipartForm {
 
     private var contents = [MultipartFormContent]()
 
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         contents.isEmpty
     }
 
-    var summary: String? {
+    public var summary: String? {
         contents.map(\.summary).joined(separator: "\n")
     }
 
     // MARK: - API
 
-    func generateData() -> Data {
+    public func generateData() -> Data {
         let data = NSMutableData()
 
         for content in contents {
@@ -36,54 +36,54 @@ public final class MultipartForm {
         return data as Data
     }
 
-    func contains(_ name: String) -> Bool {
+    public func contains(_ name: String) -> Bool {
         !contents.filter { $0.name.hasPrefix(name) }.isEmpty
     }
 
-    func getStringContentWithName(_ name: String) -> String? {
+    public func getStringContentWithName(_ name: String) -> String? {
         if let content = contents.first(where: { $0 is StringContent && $0.name == name }) {
             return (content as? StringContent)?.value
         }
         return nil
     }
 
-    func addContent(_ value: Bool, withName name: String) {
+    public func addContent(_ value: Bool, withName name: String) {
         contents.append(StringContent(value: value ? "true" : "false", name: name))
     }
 
-    func addContent(_ value: String, withName name: String) {
+    public func addContent(_ value: String, withName name: String) {
         contents.append(StringContent(value: value, name: name))
     }
 
-    func addContent(_ value: Int, withName name: String) {
+    public func addContent(_ value: Int, withName name: String) {
         contents.append(StringContent(value: String(value), name: name))
     }
 
-    func addContent(_ value: Int32, withName name: String) {
+    public func addContent(_ value: Int32, withName name: String) {
         contents.append(StringContent(value: String(value), name: name))
     }
 
-    func addContent(_ value: Int64, withName name: String) {
+    public func addContent(_ value: Int64, withName name: String) {
         contents.append(StringContent(value: String(value), name: name))
     }
 
-    func addContent(_ value: Double, withName name: String) {
+    public func addContent(_ value: Double, withName name: String) {
         contents.append(StringContent(value: String(value), name: name))
     }
 
-    func addContent(_ value: Date, withName name: String) {
+    public func addContent(_ value: Date, withName name: String) {
         contents.append(StringContent(value: value.asISO8601String(), name: name))
     }
 
-    func addContent(_ value: UUID, withName name: String) {
+    public func addContent(_ value: UUID, withName name: String) {
         contents.append(StringContent(value: value.uuidString, name: name))
     }
 
-    func addContent(_ value: Data, withName name: String, savingTo filename: String) {
+    public func addContent(_ value: Data, withName name: String, savingTo filename: String) {
         contents.append(FileContent(value: value, name: name, filename: filename))
     }
 
-    func addContent<T: Encodable>(_ value: T, withName name: String) throws {
+    public func addContent<T: Encodable>(_ value: T, withName name: String) throws {
         contents.append(try JSONContent(value: value, name: name))
     }
 
@@ -173,10 +173,10 @@ public final class MultipartForm {
 
 // MARK: -
 
-struct MultipartFormError: LocalizedError {
-    let message: String
-    let form: MultipartForm
-    let flag: String?
+public struct MultipartFormError: LocalizedError {
+    public let message: String
+    public let form: MultipartForm
+    public let flag: String?
 
     public var errorDescription: String? {
         message

@@ -9,7 +9,7 @@ public enum PromptType {
     case success
     case warning
 
-    var symbol: Symbol {
+    public var symbol: Symbol {
         switch self {
         case .info:
             return Symbol(.statusInfo)
@@ -28,7 +28,7 @@ public enum PromptType {
 }
 
 public final class PromptLabel: UILabel {
-    enum Presentation {
+    public enum Presentation {
         case `static`
         case custom(pulseDuration: Double?, onFinish: () -> Void)
         case fade
@@ -37,7 +37,7 @@ public final class PromptLabel: UILabel {
 
     private var presentationTimer: Timer?
 
-    func clear(collapseSpace: Bool) {
+    public func clear(collapseSpace: Bool) {
         presentationTimer?.invalidate()
         presentationTimer = nil
 
@@ -54,27 +54,27 @@ public final class PromptLabel: UILabel {
         }
     }
 
-    func success(_ text: String, presentation: Presentation = .static) {
+    public func success(_ text: String, presentation: Presentation = .static) {
         setText(text, type: .success, presentation: presentation)
     }
 
-    func info(_ text: String, presentation: Presentation = .static) {
+    public func info(_ text: String, presentation: Presentation = .static) {
         setText(text, type: .info, presentation: presentation)
     }
 
-    func warning(_ text: String, presentation: Presentation = .static) {
+    public func warning(_ text: String, presentation: Presentation = .static) {
         setText(text, type: .warning, presentation: presentation)
     }
 
-    func error(_ error: Error, presentation: Presentation = .static) {
+    public func error(_ error: Error, presentation: Presentation = .static) {
         setText(error.localizedDescription, type: .error, presentation: presentation)
     }
 
-    func error(_ text: String, presentation: Presentation = .static) {
+    public func error(_ text: String, presentation: Presentation = .static) {
         setText(text, type: .error, presentation: presentation)
     }
 
-    func setText(_ text: String, type: PromptType, presentation: Presentation = .static) {
+    public func setText(_ text: String, type: PromptType, presentation: Presentation = .static) {
         layer.removeAllAnimations()
 
         isHidden = false
@@ -182,21 +182,21 @@ public final class PromptLabel: UILabel {
         }
     }
 
-    func addButtonRecognizer(target: UIView, action: Selector, actionName: String) {
+    public func addButtonRecognizer(target: UIView, action: Selector, actionName: String) {
         isUserInteractionEnabled = true
         let labelGR = UITapGestureRecognizer(target: target, action: action)
         addGestureRecognizer(labelGR)
         labelGR.name = actionName
     }
 
-    func addButtonRecognizer(target: UIViewController, action: Selector, actionName: String) {
+    public func addButtonRecognizer(target: UIViewController, action: Selector, actionName: String) {
         isUserInteractionEnabled = true
         let labelGR = UITapGestureRecognizer(target: target, action: action)
         addGestureRecognizer(labelGR)
         labelGR.name = actionName
     }
 
-    func boundingRect(forCharacterRange range: NSRange) -> CGRect? {
+    public func boundingRect(forCharacterRange range: NSRange) -> CGRect? {
         guard let attributedText = attributedText else { return nil }
 
         let textContainer = NSTextContainer(size: bounds.size)
@@ -218,7 +218,7 @@ public final class PromptLabel: UILabel {
     }
 
     // support detecting tap location
-    func indexOfLetterAtPoint(point: CGPoint) -> Int? {
+    public func indexOfLetterAtPoint(point: CGPoint) -> Int? {
         guard let attributedText = attributedText else { return nil }
         let textContainer = NSTextContainer(size: frame.size)
         textContainer.lineFragmentPadding = 0
@@ -235,9 +235,9 @@ public final class PromptLabel: UILabel {
         return index
     }
 
-    func hide(_ flag: Bool = true) { isHidden = flag }
+    public func hide(_ flag: Bool = true) { isHidden = flag }
 
-    func show() { isHidden = false }
+    public func show() { isHidden = false }
 }
 
 // MARK: -

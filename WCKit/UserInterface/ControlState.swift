@@ -7,12 +7,12 @@ public enum ControlState {
     case hidden
     case normal
 
-    var isDisabled: Bool {
+    public var isDisabled: Bool {
         if case .disabled = self { return true }
         return false
     }
 
-    var isHidden: Bool {
+    public var isHidden: Bool {
         if case .hidden = self { return true }
         return false
     }

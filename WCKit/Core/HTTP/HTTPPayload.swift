@@ -7,5 +7,5 @@ public struct HTTPPayload {
     let typeName: String?
     let summary: String?
 
-    static let none = HTTPPayload(data: Data(capacity: 0), typeName: nil, summary: nil)
+    public static let none = HTTPPayload(data: Data(capacity: 0), typeName: nil, summary: nil)
 }

@@ -60,11 +60,11 @@ public final class SegmentedButton: UIView {
             stackView.addArrangedSubview(titlesStackView)
 
             titlesStackView.addArrangedSubview(titleLabel)
-            titleLabel.font = R.fonts.title
+            titleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
             titleLabel.text = title
 
             titlesStackView.addArrangedSubview(subtitleLabel)
-            subtitleLabel.font = R.fonts.subtitle
+            subtitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
             subtitleLabel.text = subtitle
         }
     }
@@ -82,7 +82,7 @@ public final class SegmentedButton: UIView {
     private let secondaryBackground = UIColor.white
     private let secondaryForeground = UIColor.black
 
-    var checkedIndex: Int = -1 {
+    public var checkedIndex: Int = -1 {
         didSet {
             for index in segments.indices {
                 let segment = segments[index]
@@ -131,7 +131,7 @@ public final class SegmentedButton: UIView {
         let label = UILabel(frame: CGRect.zero)
 
         label.textColor = .secondaryLabel
-        label.font = R.fonts.body
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.text = "SegmentedButton"
         label.translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
@@ -164,7 +164,7 @@ public final class SegmentedButton: UIView {
 
     // MARK: - API
 
-    func removeAllSegments() {
+    public func removeAllSegments() {
         for segment in segments {
             stackView.removeArrangedSubview(segment)
             segment.removeFromSuperview()
@@ -172,7 +172,7 @@ public final class SegmentedButton: UIView {
         segments.removeAll()
     }
 
-    func addSegment(title: String, subtitle: String? = nil) {
+    public func addSegment(title: String, subtitle: String? = nil) {
         let segment = Segment(index: segments.count, title: title, subtitle: subtitle)
 
         segment.isUserInteractionEnabled = true

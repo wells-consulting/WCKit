@@ -19,7 +19,7 @@ public extension UIColor {
         adjust(byPercent: -1 * abs(percent))
     }
 
-    private func adjust(byPercent percent: CGFloat = 30.0) -> UIColor? {
+    func adjust(byPercent percent: CGFloat = 30.0) -> UIColor? {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0

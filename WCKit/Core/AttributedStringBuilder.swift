@@ -75,23 +75,23 @@ public class AttributedStringBuilder {
         self.font = font
     }
 
-    func appendLinefeed(count: Int = 1) {
+    public func appendLinefeed(count: Int = 1) {
         parts.append(LinefeedPart(font: font, count: count))
     }
 
-    func appendText(_ text: String, color: UIColor, alignment: NSTextAlignment? = nil) {
+    public func appendText(_ text: String, color: UIColor, alignment: NSTextAlignment? = nil) {
         parts.append(TextPart(text: text, font: font, color: color, alignment: alignment))
     }
 
-    func appendSpacer(count: Int = 1) {
+    public func appendSpacer(count: Int = 1) {
         parts.append(SpacerPart(font: font, count: count))
     }
 
-    func appendSymbol(_ symbol: Symbol) {
+    public func appendSymbol(_ symbol: Symbol) {
         parts.append(SymbolPart(font: font, symbol: symbol))
     }
 
-    func buildAttributedString() -> NSAttributedString {
+    public func buildAttributedString() -> NSAttributedString {
         let buffer = NSMutableAttributedString()
 
         buffer.insert(NSAttributedString(string: "\u{200b}"), at: 0)

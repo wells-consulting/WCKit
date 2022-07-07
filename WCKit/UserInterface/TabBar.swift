@@ -9,14 +9,14 @@ public protocol TabBarDelegate: AnyObject {
 
 @IBDesignable
 public class TabBar: UIView {
-    enum TabBarType {
+    public enum TabBarType {
         case primary
         case secondary
     }
 
-    var tabs = [Tab]()
+    public var tabs = [Tab]()
 
-    weak var delegate: TabBarDelegate!
+    public weak var delegate: TabBarDelegate!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -37,11 +37,11 @@ public class TabBar: UIView {
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
 
-    static let nilTab = Tab()
+    public static let nilTab = Tab()
 
-    var tabBarType: TabBarType = .primary
+    public var tabBarType: TabBarType = .primary
 
-    var selectedTab: Tab = TabBar.nilTab {
+    public var selectedTab: Tab = TabBar.nilTab {
         didSet {
             guard selectedTab != oldValue else { return }
             for tab in tabs { tab.isSelected = tab == selectedTab }
@@ -61,11 +61,11 @@ public class TabBar: UIView {
         return stackView
     }()
 
-    func getTab(withIdentifier identifier: String) -> Tab? {
+    public func getTab(withIdentifier identifier: String) -> Tab? {
         tabs.first(where: { $0.identifier == identifier })
     }
 
-    func addTab(
+    public func addTab(
         identifier: String,
         showCheckmarkWhenSelected: Bool,
         accessoryImage: UIImage?
@@ -87,7 +87,7 @@ public class TabBar: UIView {
         return tab
     }
 
-    func style(selectedTab: Tab) {
+    public func style(selectedTab: Tab) {
         for tab in tabs { tab.isSelected = tab == selectedTab }
     }
 
@@ -101,7 +101,7 @@ public class TabBar: UIView {
     }
 
     public class Tab: Equatable {
-        let identifier: String
+        public let identifier: String
         private let tabView: TabView?
 
         fileprivate init() {
@@ -115,12 +115,12 @@ public class TabBar: UIView {
         }
 
         @discardableResult
-        func setTitle(_ title: String) -> Tab {
+        public func setTitle(_ title: String) -> Tab {
             tabView?.titleLabel.text = title
             return self
         }
 
-        fileprivate var isSelected: Bool {
+        public var isSelected: Bool {
             get { tabView?.isSelected ?? false }
             set { tabView?.isSelected = newValue }
         }
@@ -155,7 +155,7 @@ public class TabBar: UIView {
         let titleLabel: UILabel = {
             let label = UILabel(frame: CGRect.zero)
             label.isUserInteractionEnabled = true
-            label.font = R.fonts.button
+            label.font = UIFont.preferredFont(forTextStyle: .body)
             return label
         }()
 
@@ -222,7 +222,7 @@ public class TabBar: UIView {
             styleTab()
         }
 
-        var isSelected: Bool = false {
+        public var isSelected: Bool = false {
             didSet { if isSelected != oldValue { styleTab() } }
         }
 

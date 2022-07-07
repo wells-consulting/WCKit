@@ -4,8 +4,12 @@ import Foundation
 import UIKit
 
 public final class Symbol {
-    let name: String
+    public let name: String
 
+    public init(name: String) {
+        self.name = name
+    }
+    
     convenience init(_ name: Name) {
         self.init(nameString: name.rawValue)
     }
@@ -43,7 +47,7 @@ public final class Symbol {
     private var sizeConfiguration: UIImage.SymbolConfiguration?
     private var colorConfiguration: UIImage.SymbolConfiguration?
 
-    var image: UIImage? {
+    public var image: UIImage? {
         if
             let colorConfiguration = colorConfiguration,
             let sizeConfiguration = sizeConfiguration
@@ -70,7 +74,7 @@ public final class Symbol {
 
     // MARK: Size
 
-    func font(_ font: UIFont) -> Symbol {
+    public func font(_ font: UIFont) -> Symbol {
         sizeConfiguration = UIImage.SymbolConfiguration(font: font, scale: .large)
         return self
     }
@@ -78,19 +82,19 @@ public final class Symbol {
     // MARK: Color
 
     @discardableResult
-    func color(_ color: UIColor) -> Symbol {
+    public func color(_ color: UIColor) -> Symbol {
         colorConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: color)
         return self
     }
 
     @discardableResult
-    func autoTint(basedOn color: UIColor) -> Symbol {
+    public func autoTint(basedOn color: UIColor) -> Symbol {
         colorConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: color)
         return self
     }
 
     @discardableResult
-    func palette(foregroundColor: UIColor, backgroundColor: UIColor) -> Symbol {
+    public func palette(foregroundColor: UIColor, backgroundColor: UIColor) -> Symbol {
         colorConfiguration = UIImage.SymbolConfiguration(
             paletteColors: [foregroundColor, backgroundColor]
         )

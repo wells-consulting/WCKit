@@ -3,8 +3,8 @@
 import Foundation
 
 public struct JSONError: LocalizedError {
-    let message: String
-    let jsonText: String?
+    public let message: String
+    public let jsonText: String?
 
     public var errorDescription: String? { message }
 
@@ -19,7 +19,7 @@ public struct JSONError: LocalizedError {
 }
 
 public enum JSON {
-    static func stringify<T: Encodable>(_ value: T) -> String? {
+    public static func stringify<T: Encodable>(_ value: T) -> String? {
         do {
             let data = try encoder.encode(value)
             return String(data: data, encoding: .utf8)
@@ -44,7 +44,7 @@ public enum JSON {
         return decoder
     }()
 
-    static func decode<T: Decodable>(_ data: Data) throws -> T {
+    public static func decode<T: Decodable>(_ data: Data) throws -> T {
         var message = ""
 
         func pathToDecodingContext(_ context: DecodingError.Context) -> String {
@@ -108,7 +108,7 @@ public enum JSON {
         return path.joined(separator: ".")
     }
 
-    static func encode<T: Encodable>(_ value: T) throws -> Data {
+    public static func encode<T: Encodable>(_ value: T) throws -> Data {
         do {
             return try encoder.encode(value)
         } catch let EncodingError.invalidValue(key, context) {
@@ -123,7 +123,7 @@ public enum JSON {
 // MARK: -
 
 extension JSONSerialization {
-    static func decode(_ data: Data) -> [String: Any]? {
+    public static func decode(_ data: Data) -> [String: Any]? {
         guard let value = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
         return value as? [String: Any]
     }
@@ -143,12 +143,12 @@ public enum JSONValue {
     indirect case object([String: JSONValue])
     case string(String)
 
-    subscript(index: Int) -> JSONValue? {
+    public subscript(index: Int) -> JSONValue? {
         guard case let .array(array) = self else { return nil }
         return array[index]
     }
 
-    subscript(key: String) -> JSONValue? {
+    public subscript(key: String) -> JSONValue? {
         guard case let .object(dictionary) = self else { return nil }
         return dictionary[key]
     }
@@ -254,47 +254,47 @@ extension JSONValue: Codable {
 // MARK: - Accessors
 
 extension JSONValue {
-    var int: Int? {
+    public var int: Int? {
         guard case let .int(value) = self else { return nil }
         return value
     }
 
-    var int64: Int64? {
+    public var int64: Int64? {
         guard case let .int64(value) = self else { return nil }
         return value
     }
 
-    var decimal: Decimal? {
+    public var decimal: Decimal? {
         guard case let .decimal(value) = self else { return nil }
         return value
     }
 
-    var double: Double? {
+    public var double: Double? {
         guard case let .double(value) = self else { return nil }
         return value
     }
 
-    var string: String? {
+    public var string: String? {
         guard case let .string(value) = self else { return nil }
         return value
     }
 
-    var isNil: Bool {
+    public var isNil: Bool {
         guard case .null = self else { return false }
         return true
     }
 
-    var bool: Bool? { // swiftlint:disable:this discouraged_optional_boolean
+    public var bool: Bool? { // swiftlint:disable:this discouraged_optional_boolean
         guard case let .bool(value) = self else { return nil }
         return value
     }
 
-    var array: [JSONValue]? {
+    public var array: [JSONValue]? {
         guard case let .array(value) = self else { return nil }
         return value
     }
 
-    var object: [String: JSONValue]? {
+    public var object: [String: JSONValue]? {
         guard case let .object(value) = self else { return nil }
         return value
     }

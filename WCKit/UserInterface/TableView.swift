@@ -322,7 +322,7 @@ public final class TableView: UITableView {
 }
 
 extension UITableView {
-    func makeCellFor<T: UITableViewCell>(_ indexPath: IndexPath) -> T {
+    public func makeCellFor<T: UITableViewCell>(_ indexPath: IndexPath) -> T {
         let identifier = "\(T.self)"
 
         guard let cell = dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? T else {
@@ -335,23 +335,23 @@ extension UITableView {
         return cell
     }
 
-    func makeLoadingCellFor(_ indexPath: IndexPath, text: String = "Loading...") -> UITableViewCell {
+    public func makeLoadingCellFor(_ indexPath: IndexPath, text: String = "Loading...") -> UITableViewCell {
         let cell: TableView.LoadingTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
 
-    func makeEmptyCellFor(_ indexPath: IndexPath) -> UITableViewCell {
+    public func makeEmptyCellFor(_ indexPath: IndexPath) -> UITableViewCell {
         makeTextCellFor(indexPath, text: "Nothing found to display")
     }
 
-    func makeTextCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
+    public func makeTextCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
         let cell: TableView.TextTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
 
-    func makeSelectListCellFor(
+    public func makeSelectListCellFor(
         _ indexPath: IndexPath,
         text: String,
         isSelected: Bool
@@ -361,11 +361,11 @@ extension UITableView {
         return cell
     }
 
-    func makeErrorCellFor(_ indexPath: IndexPath, error: Error) -> UITableViewCell {
+    public func makeErrorCellFor(_ indexPath: IndexPath, error: Error) -> UITableViewCell {
         makeErrorCellFor(indexPath, text: error.localizedDescription)
     }
 
-    func makeErrorCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
+    public func makeErrorCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
         let cell: TableView.ErrorTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
@@ -373,7 +373,7 @@ extension UITableView {
 
     // MARK: Header
 
-    func makeHeaderView(title: String) -> UIView {
+    public func makeHeaderView(title: String) -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         view.backgroundColor = .systemGray6
 
@@ -412,19 +412,19 @@ extension UITableView {
 
     // MARK: - Utilities
 
-    func insertRow(at indexPath: IndexPath) {
+    private func insertRow(at indexPath: IndexPath) {
         insertRows(at: [indexPath], with: .automatic)
     }
 
-    func reloadRow(at indexPath: IndexPath) {
+    private func reloadRow(at indexPath: IndexPath) {
         reloadRows(at: [indexPath], with: .automatic)
     }
 
-    func deleteRow(at indexPath: IndexPath) {
+    private func deleteRow(at indexPath: IndexPath) {
         deleteRows(at: [indexPath], with: .automatic)
     }
 
-    func cellContaining(_ view: UIView) -> (UITableViewCell?, IndexPath?) {
+    private func cellContaining(_ view: UIView) -> (UITableViewCell?, IndexPath?) {
         let point = view.convert(CGPoint.zero, to: self)
 
         guard let indexPath = indexPathForRow(at: point) else {

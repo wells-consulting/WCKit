@@ -19,7 +19,6 @@
 		4C7F5E6A287755E400B9DE80 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E69287755E400B9DE80 /* UIButtonExtensions.swift */; };
 		4C7F5E6C2877565D00B9DE80 /* Menubar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E6B2877565D00B9DE80 /* Menubar.swift */; };
 		4C7F5E6E2877567E00B9DE80 /* ControlState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E6D2877567E00B9DE80 /* ControlState.swift */; };
-		4C7F5E712877573100B9DE80 /* R.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E702877573100B9DE80 /* R.swift */; };
 		4C7F5E73287757AB00B9DE80 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E72287757AB00B9DE80 /* TabBar.swift */; };
 		4C7F5E752877581300B9DE80 /* SegmentedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E742877581300B9DE80 /* SegmentedButton.swift */; };
 		4C7F5E772877591300B9DE80 /* PromptLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7F5E762877591300B9DE80 /* PromptLabel.swift */; };
@@ -61,7 +60,6 @@
 		4C7F5E69287755E400B9DE80 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		4C7F5E6B2877565D00B9DE80 /* Menubar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menubar.swift; sourceTree = "<group>"; };
 		4C7F5E6D2877567E00B9DE80 /* ControlState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlState.swift; sourceTree = "<group>"; };
-		4C7F5E702877573100B9DE80 /* R.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = R.swift; sourceTree = "<group>"; };
 		4C7F5E72287757AB00B9DE80 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		4C7F5E742877581300B9DE80 /* SegmentedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedButton.swift; sourceTree = "<group>"; };
 		4C7F5E762877591300B9DE80 /* PromptLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptLabel.swift; sourceTree = "<group>"; };
@@ -113,14 +111,6 @@
 				4C7F5E5328772A2200B9DE80 /* MultipartForm.swift */,
 			);
 			path = HTTP;
-			sourceTree = "<group>";
-		};
-		4C7F5E6F2877572600B9DE80 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				4C7F5E702877573100B9DE80 /* R.swift */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		4C7F5E7C28775A0B00B9DE80 /* UserInterface */ = {
@@ -205,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				4CB41C7928762C4D00B9ACF7 /* Core */,
-				4C7F5E6F2877572600B9DE80 /* Resources */,
 				4C7F5E7C28775A0B00B9DE80 /* UserInterface */,
 				4CB41C7828762C4D00B9ACF7 /* WCKit.h */,
 			);
@@ -338,7 +327,6 @@
 				4C7F5E5428772A2200B9DE80 /* MultipartForm.swift in Sources */,
 				4CB41C9128762C4D00B9ACF7 /* DecimalExtension.swift in Sources */,
 				4CB41C8F28762C4D00B9ACF7 /* AppError.swift in Sources */,
-				4C7F5E712877573100B9DE80 /* R.swift in Sources */,
 				4CB41C8B28762C4D00B9ACF7 /* UIImageExtension.swift in Sources */,
 				4CB41C8928762C4D00B9ACF7 /* UITableViewExtension.swift in Sources */,
 				4CB41C8628762C4D00B9ACF7 /* UIColorExtension.swift in Sources */,

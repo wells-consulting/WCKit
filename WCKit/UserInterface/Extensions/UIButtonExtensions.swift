@@ -35,11 +35,11 @@ extension UIButton {
         set { accessibilityLabel = newValue }
     }
 
-    func setTitle(_ title: String?) {
+    public func setTitle(_ title: String?) {
         setTitle(title, for: UIControl.State())
     }
 
-    func disable() {
+    public func disable() {
         isEnabled = false
         let disabledForegroundColor = UIColor.systemGray2.darker() ?? .systemGray
         setTitleColor(disabledForegroundColor, for: .disabled)
@@ -48,7 +48,7 @@ extension UIButton {
         if layer.borderWidth > CGFloat.zero { addBorder() }
     }
 
-    func enable(_ flag: Bool, as style: ButtonStyle? = nil) {
+    public func enable(_ flag: Bool, as style: ButtonStyle? = nil) {
         if flag, let style = style {
             enable(as: style)
         } else {
@@ -56,12 +56,12 @@ extension UIButton {
         }
     }
 
-    func enable(as style: ButtonStyle) {
+    public func enable(as style: ButtonStyle) {
         isEnabled = true
         styleAs(style)
     }
 
-    func styleAs(_ style: ButtonStyle) {
+    public func styleAs(_ style: ButtonStyle) {
         switch style {
         case .action:
             tintColor = .white

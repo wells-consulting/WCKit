@@ -2,14 +2,14 @@
 
 import Foundation
 
-protocol NonSummaryConvertible {}
+public protocol NonSummaryConvertible {}
 
-protocol SummaryConvertible {
+public protocol SummaryConvertible {
     var summary: String? { get }
 }
 
 extension Array: SummaryConvertible where Element: SummaryConvertible {
-    var summary: String? {
+    public var summary: String? {
         "[" + compactMap(\.summary).joined(separator: ", ") + "]"
     }
 }
@@ -82,12 +82,6 @@ public final class Log {
         }
     }
 
-    struct Context {
-        let username: String?
-        let locationID: Int64?
-        let locationName: String?
-    }
-
     private static var isStarted = false
     private static var isRemoteLoggingEnabled = false
     private static var recorders = [Recorder]()
@@ -98,7 +92,7 @@ public final class Log {
 
     // MARK: Lifetime
 
-    static func initialize(isRemoteLoggingEnabled: Bool) {
+    public static func initialize(isRemoteLoggingEnabled: Bool) {
         guard !isStarted else {
             return
         }
@@ -112,7 +106,7 @@ public final class Log {
 
     // MARK: Fault
 
-    static func fault(
+    public static func fault(
         _ error: Error,
         function: String = #function,
         file: String = #file,
@@ -131,7 +125,7 @@ public final class Log {
         }
     }
 
-    static func fault(
+    public static func fault(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -152,7 +146,7 @@ public final class Log {
 
     // MARK: Error
 
-    static func error(
+    public static func error(
         _ error: Error,
         function: String = #function,
         file: String = #file,
@@ -171,7 +165,7 @@ public final class Log {
         }
     }
 
-    static func error(
+    public static func error(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -192,7 +186,7 @@ public final class Log {
 
     // MARK: Warning
 
-    static func warning(
+    public static func warning(
         _ error: Error,
         function: String = #function,
         file: String = #file,
@@ -211,7 +205,7 @@ public final class Log {
         }
     }
 
-    static func warning(
+    public static func warning(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -232,7 +226,7 @@ public final class Log {
 
     // MARK: Info
 
-    static func info(
+    public static func info(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -253,7 +247,7 @@ public final class Log {
 
     // MARK: Debug
 
-    static func debug(
+    public static func debug(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -274,7 +268,7 @@ public final class Log {
 
     // MARK: Verbose
 
-    static func verbose(
+    public static func verbose(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -295,7 +289,7 @@ public final class Log {
 
     //
 
-    static func message(
+    public static func message(
         _ message: String,
         severity: Log.Severity,
         function: String = #function,

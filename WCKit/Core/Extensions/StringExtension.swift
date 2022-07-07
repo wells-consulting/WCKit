@@ -176,7 +176,7 @@ extension NSAttributedString {
 // MARK: - SummaryConvertible
 
 extension String: SummaryConvertible {
-    var summary: String? { self }
+    public var summary: String? { self }
 }
 
 // MARK: Click in String

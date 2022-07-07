@@ -11,7 +11,7 @@ public protocol ManagedObject {
     static var idKeyName: String? { get }
 }
 
-protocol PredicateConvertible {
+public protocol PredicateConvertible {
     var predicate: NSPredicate? { get }
 }
 
@@ -54,23 +54,23 @@ public final class PersistenceController {
 
     // MARK: Fetch
 
-    func fetch<T: ManagedObject>(_ objectID: Int64) -> T? {
+    public func fetch<T: ManagedObject>(_ objectID: Int64) -> T? {
         guard let idKeyName = T.idKeyName else { return nil }
 
         return fetch(matching: NSPredicate(format: "%K == %d", idKeyName, objectID))
     }
 
-    func fetch<T: ManagedObject>(_ uuid: UUID) -> T? {
+    public func fetch<T: ManagedObject>(_ uuid: UUID) -> T? {
         fetch(matching: NSPredicate(format: "%K == %@", "uuid", uuid as CVarArg))
     }
 
-    func fetch<T: ManagedObject>(_ fetchable: PredicateConvertible) -> T? {
+    public func fetch<T: ManagedObject>(_ fetchable: PredicateConvertible) -> T? {
         guard let predicate = fetchable.predicate else { return nil }
 
         return fetch(matching: predicate)
     }
 
-    func fetch<T: ManagedObject>(matching predicate: NSPredicate) -> T? {
+    public func fetch<T: ManagedObject>(matching predicate: NSPredicate) -> T? {
         guard let object: T = materializedObject(matching: predicate) else {
             return fetch { request in
                 request.predicate = predicate
@@ -82,7 +82,7 @@ public final class PersistenceController {
         return object
     }
 
-    func fetch<T: ManagedObject>(
+    public func fetch<T: ManagedObject>(
         configurationBlock: (NSFetchRequest<NSFetchRequestResult>) -> Void = { _ in }
     ) -> [T] {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: T.entityName)
@@ -100,7 +100,7 @@ public final class PersistenceController {
         return array
     }
 
-    func makeFetchedResultsController(
+    public func makeFetchedResultsController(
         entityName: String,
         configurationBlock: (NSFetchRequest<NSFetchRequestResult>) -> Void = { _ in }
     ) -> NSFetchedResultsController<NSFetchRequestResult> {
@@ -118,7 +118,7 @@ public final class PersistenceController {
 
     // MARK: Create
 
-    func create<T: ManagedObject>() -> T {
+    public func create<T: ManagedObject>() -> T {
         let coreDataObject = NSEntityDescription.insertNewObject(
             forEntityName: T.entityName,
             into: managedObjectContext
@@ -129,7 +129,7 @@ public final class PersistenceController {
         return object
     }
 
-    private func materializedObject<T: ManagedObject>(matching predicate: NSPredicate) -> T? {
+    public func materializedObject<T: ManagedObject>(matching predicate: NSPredicate) -> T? {
 
         for object in managedObjectContext.registeredObjects where !object.isFault {
             guard let result = object as? T else { continue }
@@ -144,13 +144,13 @@ public final class PersistenceController {
 
     // MARK: Delete
 
-    func delete(_ object: NSManagedObject) {
+    public func delete(_ object: NSManagedObject) {
         managedObjectContext.delete(object)
     }
 
     // MARK: Save
 
-    func save() throws {
+    public func save() throws {
         do {
             try managedObjectContext.save()
         } catch {

@@ -31,9 +31,9 @@ public class PopupMenuItem {
 public final class PopupMenu: NSObject {
     private(set) var items = [PopupMenuItem]()
 
-    var isEmpty: Bool { items.isEmpty }
+    public var isEmpty: Bool { items.isEmpty }
 
-    func addItem(
+    public func addItem(
         id: Int,
         symbol: Symbol,
         label: String,
@@ -51,12 +51,12 @@ public final class PopupMenu: NSObject {
         items.append(item)
     }
 
-    func enableItem(withID id: Int) {
+    public func enableItem(withID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.isDisabled = false
     }
 
-    func disableItem(withID id: Int) {
+    public func disableItem(withID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.isDisabled = true
     }

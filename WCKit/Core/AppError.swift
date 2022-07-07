@@ -3,9 +3,9 @@
 import Foundation
 
 public struct AppError: LocalizedError {
-    static var unresolved = AppError("Unresolved Error")
+    public static var unresolved = AppError("Unresolved Error")
 
-    let summary: String?
+    public let summary: String?
     public let errorDescription: String?
 
     init(_ error: Error) {

@@ -44,9 +44,9 @@ public final class ActivityView: UIView {
         return view
     }()
 
-    let key: String?
+    public let key: String?
 
-    var message: String? {
+    public var message: String? {
         get { messageLabel.text }
         set { messageLabel.text = newValue }
     }
@@ -60,7 +60,7 @@ public final class ActivityView: UIView {
         super.init(coder: aDecoder)
     }
 
-    init(key: String? = nil) {
+    public init(key: String? = nil) {
         self.key = key
         super.init(frame: CGRect.zero)
         if let key = key { ActivityView.instances[key] = self }
@@ -68,7 +68,7 @@ public final class ActivityView: UIView {
 
     private static var instances = [String: ActivityView]()
 
-    func show(
+    public func show(
         _ message: String,
         function: String = #function,
         file: String = #file,
@@ -106,7 +106,7 @@ public final class ActivityView: UIView {
         }
     }
 
-    func addCancelButton(action: () -> Void) {
+    public func addCancelButton(action: () -> Void) {
         let button = UIButton(frame: CGRect.zero)
 
         button.styleAs(.cancel)
@@ -174,11 +174,11 @@ public final class ActivityView: UIView {
         addSubview(shadowView)
     }
 
-    static func dismiss(_ key: String) {
+    public static func dismiss(_ key: String) {
         ActivityView.instances[key]?.dismiss()
     }
 
-    func dismiss() {
+    public func dismiss() {
         isDismissed = true
 
         cancelAction?(self)

@@ -3,13 +3,13 @@
 import Foundation
 
 public struct HTTPError: LocalizedError {
-    enum FailureType: CustomStringConvertible {
+    public enum FailureType: CustomStringConvertible {
         case notAuthenticated(Bool) // Need to (re)authenticate
         case notAuthorized(Bool) // Need to have a permission
         case lostConnection // Network connection lost
         case other(HTTPError)
 
-        var description: String {
+        public var description: String {
             switch self {
             case let .notAuthenticated(wasStatusCode):
                 return wasStatusCode ? HTTPStatus.forbidden.description : "Found 'NotAuthenticated' in response"
@@ -26,17 +26,17 @@ public struct HTTPError: LocalizedError {
 
     //
 
-    let status: HTTPStatus?
-    let request: URLRequest
-    let response: HTTPURLResponse?
-    let data: Data?
-    let error: Error?
-    let responseText: String?
-    let jsonObject: [String: Any]?
+    public let status: HTTPStatus?
+    public let request: URLRequest
+    public let response: HTTPURLResponse?
+    public let data: Data?
+    public let error: Error?
+    public let responseText: String?
+    public let jsonObject: [String: Any]?
 
-    var isSuccess: Bool { status?.isSuccess ?? false }
-    var isClientError: Bool { status?.isClientError ?? false }
-    var isServerError: Bool { status?.isServerError ?? false }
+    public var isSuccess: Bool { status?.isSuccess ?? false }
+    public var isClientError: Bool { status?.isClientError ?? false }
+    public var isServerError: Bool { status?.isServerError ?? false }
 
     private let foundNotAuthenticated: Bool
     private let foundNotAuthorized: Bool
@@ -44,7 +44,7 @@ public struct HTTPError: LocalizedError {
     private let requestResponseString: String
 
     private let errorText: String
-    var errorDetails: String? {
+    public var errorDetails: String? {
         errorText.isEmpty
             ? nil
             : errorText.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -56,7 +56,7 @@ public struct HTTPError: LocalizedError {
             + errorText.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
-    var failureType: FailureType {
+    public var failureType: FailureType {
         switch errorDescription {
         case "The network connection was lost.":
             return .lostConnection
@@ -174,17 +174,17 @@ public struct HTTPError: LocalizedError {
 
     //
 
-    static func status(_ error: Error) -> HTTPStatus? {
+    public static func status(_ error: Error) -> HTTPStatus? {
         guard let httpError = error as? HTTPError else { return nil }
         return httpError.status
     }
 
-    static func failureType(_ error: Error) -> FailureType? {
+    public static func failureType(_ error: Error) -> FailureType? {
         guard let httpError = error as? HTTPError else { return nil }
         return httpError.failureType
     }
 
-    static func object<T: Decodable>(_ error: Error) -> T? {
+    public static func object<T: Decodable>(_ error: Error) -> T? {
         guard let httpError = error as? HTTPError else { return nil }
         guard let data = httpError.data else { return nil }
 

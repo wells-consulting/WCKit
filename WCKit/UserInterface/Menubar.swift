@@ -67,12 +67,12 @@ public final class MenubarPart {
     }
 }
 
-protocol MenubarDelegate: AnyObject {
+public protocol MenubarDelegate: AnyObject {
     func menubarDidSelectItem(withID id: Int)
 }
 
-public class Menubar: UILabel {
-    weak var delegate: MenubarDelegate?
+public final class Menubar: UILabel {
+    public weak var delegate: MenubarDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -126,7 +126,7 @@ public class Menubar: UILabel {
 
     private var items = [MenubarPart]()
 
-    func addTextMenuItem(
+    public func addTextMenuItem(
         id: Int,
         state: ControlState,
         initialValue: String
@@ -138,7 +138,7 @@ public class Menubar: UILabel {
         update()
     }
 
-    func addFieldMenuItem(
+    public func addFieldMenuItem(
         id: Int,
         state: ControlState,
         label: String,
@@ -151,29 +151,29 @@ public class Menubar: UILabel {
         update()
     }
 
-    func setState(_ state: ControlState, forItemWithID id: Int) {
+    public func setState(_ state: ControlState, forItemWithID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.setState(state)
         update()
     }
 
-    func setValue(_ value: String, forItemWithID id: Int) {
+    public func setValue(_ value: String, forItemWithID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.setValue(value)
         update()
     }
 
-    func enableItem(withID id: Int) { setState(.normal, forItemWithID: id) }
-    func disableItem(withID id: Int) { setState(.disabled(nil), forItemWithID: id) }
-    func disableItemIf(_ flag: Bool, forItemWithID id: Int) {
+    public func enableItem(withID id: Int) { setState(.normal, forItemWithID: id) }
+    public func disableItem(withID id: Int) { setState(.disabled(nil), forItemWithID: id) }
+    public func disableItemIf(_ flag: Bool, forItemWithID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.setState(flag ? .normal : .disabled(nil))
         update()
     }
 
-    func showItem(withID id: Int) { setState(.normal, forItemWithID: id) }
-    func hideItem(withID id: Int) { setState(.hidden, forItemWithID: id) }
-    func hideItemIf(_ flag: Bool, forItemWithID id: Int) {
+    public func showItem(withID id: Int) { setState(.normal, forItemWithID: id) }
+    public func hideItem(withID id: Int) { setState(.hidden, forItemWithID: id) }
+    public func hideItemIf(_ flag: Bool, forItemWithID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.setState(flag ? .hidden : .normal)
         update()
@@ -187,14 +187,16 @@ public class Menubar: UILabel {
 
     private let separatorColor = UIColor.black
 
-    var showMenuSymbol: Bool = true {
+    public var showMenuSymbol: Bool = true {
         didSet {
             update()
         }
     }
 
     private func buldAttributedString() -> NSAttributedString {
-        let builder = AttributedStringBuilder(font: R.fonts.menubar)
+        let builder = AttributedStringBuilder(
+            font: UIFont.preferredFont(forTextStyle: .body)
+        )
 
         if showMenuSymbol {
             let symbol = Symbol(.menubarIndicator)

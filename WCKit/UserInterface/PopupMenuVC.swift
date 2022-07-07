@@ -14,8 +14,21 @@ public final class PopupMenuVC: UIViewController {
     private var menu: PopupMenu!
     private weak var delegate: PopupMenuDelegate?
 
-    static func make(from menu: PopupMenu, delegate: PopupMenuDelegate) -> PopupMenuVC {
-        let vc: PopupMenuVC = UIViewController.makeViewController()
+    public static func make(from menu: PopupMenu, delegate: PopupMenuDelegate) -> PopupMenuVC {
+
+        let name = "\(Self.self)"
+
+        let storyboard = UIStoryboard(
+            name: name,
+            bundle: Bundle.init(for: PopupMenuVC.self)
+        )
+
+        guard let vc = storyboard.instantiateViewController(withIdentifier: name) as? Self else {
+            // We have to return a type T here. We could change the signature to return
+            // a result type or an optional, but that would make all the call sites
+            // quite ugly. So we deal with a trap here.
+            fatalError("Could not find view controller with identifier \(name)")
+        }
 
         vc.menu = menu
         vc.delegate = delegate
