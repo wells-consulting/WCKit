@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -89,9 +89,8 @@ public enum HTTPStatus: Int {
 extension HTTPStatus: CustomStringConvertible {
     public var description: String {
         switch self {
-
         // 10x
-            
+
         case .continue:
             return"100 Continue"
         case .switchingProtocols:
@@ -100,7 +99,7 @@ extension HTTPStatus: CustomStringConvertible {
             return "102 Processing"
 
         // 20x
-            
+
         case .ok:
             return "200 OK"
         case .created:
@@ -123,7 +122,7 @@ extension HTTPStatus: CustomStringConvertible {
             return "208 Already Reported (WebDAV)"
 
         // 30x
-            
+
         case .multipleChoices:
             return "300 Multiple Choices"
         case .movedPermanently:
@@ -144,7 +143,7 @@ extension HTTPStatus: CustomStringConvertible {
             return "308 Permanent Redirect"
 
         // 40x
-            
+
         case .badRequest:
             return "400 Bad Request"
         case .unauthorized:
@@ -203,7 +202,7 @@ extension HTTPStatus: CustomStringConvertible {
             return "451 Unavailable For Legal Reasons"
 
         // 50x
-    
+
         case .internalServerError:
             return "500 Internal Server Error"
         case .notImplemented:

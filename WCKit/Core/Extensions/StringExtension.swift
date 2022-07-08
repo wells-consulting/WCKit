@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -61,8 +61,8 @@ public extension String {
         return results.map { result in
             (0 ..< result.numberOfRanges).map {
                 result.range(at: $0).location != NSNotFound
-                ? nsString.substring(with: result.range(at: $0))
-                : ""
+                    ? nsString.substring(with: result.range(at: $0))
+                    : ""
             }
         }
     }

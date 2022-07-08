@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -113,7 +113,7 @@ public struct HTTPError: LocalizedError {
         self.data = data
         self.error = error
 
-        self.requestResponseString = HTTPError.makeRequestResponseString(
+        requestResponseString = HTTPError.makeRequestResponseString(
             request: request,
             response: response,
             status: status

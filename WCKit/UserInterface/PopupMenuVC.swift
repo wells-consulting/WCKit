@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 import UIKit
@@ -15,12 +15,11 @@ public final class PopupMenuVC: UIViewController {
     private weak var delegate: PopupMenuDelegate?
 
     public static func make(from menu: PopupMenu, delegate: PopupMenuDelegate) -> PopupMenuVC {
-
         let name = "\(Self.self)"
 
         let storyboard = UIStoryboard(
             name: name,
-            bundle: Bundle.init(for: PopupMenuVC.self)
+            bundle: Bundle(for: PopupMenuVC.self)
         )
 
         guard let vc = storyboard.instantiateViewController(withIdentifier: name) as? Self else {
@@ -36,7 +35,7 @@ public final class PopupMenuVC: UIViewController {
         return vc
     }
 
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.delegate = self

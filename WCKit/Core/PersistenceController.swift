@@ -1,7 +1,7 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
-import Foundation
 import CoreData
+import Foundation
 
 public protocol ManagedObject {
     // CoreData entity name
@@ -16,7 +16,6 @@ public protocol PredicateConvertible {
 }
 
 public final class PersistenceController {
-
     private let managedObjectContext: NSManagedObjectContext
 
     // MARK: Lifetime
@@ -124,13 +123,14 @@ public final class PersistenceController {
             into: managedObjectContext
         )
 
-        guard let object = coreDataObject as? T else { fatalError("Failed to create \(T.entityName)") }
+        guard let object = coreDataObject as? T else {
+            fatalError("Failed to create \(T.entityName)")
+        }
 
         return object
     }
 
     public func materializedObject<T: ManagedObject>(matching predicate: NSPredicate) -> T? {
-
         for object in managedObjectContext.registeredObjects where !object.isFault {
             guard let result = object as? T else { continue }
 

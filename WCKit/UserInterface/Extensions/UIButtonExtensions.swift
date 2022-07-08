@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 import UIKit
@@ -29,17 +29,17 @@ public class AppButton: UIButton {
 
 // MARK: - Button Extensions
 
-extension UIButton {
-    @IBInspectable var logTapAs: String? {
+public extension UIButton {
+    @IBInspectable internal var logTapAs: String? {
         get { accessibilityLabel }
         set { accessibilityLabel = newValue }
     }
 
-    public func setTitle(_ title: String?) {
+    func setTitle(_ title: String?) {
         setTitle(title, for: UIControl.State())
     }
 
-    public func disable() {
+    func disable() {
         isEnabled = false
         let disabledForegroundColor = UIColor.systemGray2.darker() ?? .systemGray
         setTitleColor(disabledForegroundColor, for: .disabled)
@@ -48,7 +48,7 @@ extension UIButton {
         if layer.borderWidth > CGFloat.zero { addBorder() }
     }
 
-    public func enable(_ flag: Bool, as style: ButtonStyle? = nil) {
+    func enable(_ flag: Bool, as style: ButtonStyle? = nil) {
         if flag, let style = style {
             enable(as: style)
         } else {
@@ -56,12 +56,12 @@ extension UIButton {
         }
     }
 
-    public func enable(as style: ButtonStyle) {
+    func enable(as style: ButtonStyle) {
         isEnabled = true
         styleAs(style)
     }
 
-    public func styleAs(_ style: ButtonStyle) {
+    func styleAs(_ style: ButtonStyle) {
         switch style {
         case .action:
             tintColor = .white

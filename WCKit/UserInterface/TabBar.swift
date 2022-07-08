@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 import UIKit
@@ -28,7 +28,7 @@ public class TabBar: UIView {
         addSubview(stackView)
     }
 
-    public override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
 
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

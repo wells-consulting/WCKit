@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -27,7 +27,7 @@ public protocol Recorder {
     func log(_ entry: Log.Entry)
 }
 
-public final class Log {
+public enum Log {
     public enum Severity: Int, Comparable, CustomStringConvertible {
         case fault
         case error
@@ -86,9 +86,15 @@ public final class Log {
     private static var isRemoteLoggingEnabled = false
     private static var recorders = [Recorder]()
 
-    private static let appendQueue = DispatchQueue(label: "Log.AppendEntry", attributes: .concurrent)
-    private static let formatQueue = DispatchQueue(label: "Log.FormatEntry", attributes: .concurrent)
-    private static let fatalQueue = DispatchQueue(label: "Log.FatalError")
+    private static let appendQueue = DispatchQueue(
+        label: "Log.AppendEntry",
+        attributes: .concurrent
+    )
+
+    private static let formatQueue = DispatchQueue(
+        label: "Log.FormatEntry",
+        attributes: .concurrent
+    )
 
     // MARK: Lifetime
 

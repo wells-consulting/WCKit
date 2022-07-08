@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -8,7 +8,7 @@ private protocol MultipartFormContent {
     func encode(into data: NSMutableData)
 }
 
-public final class MultipartForm {
+public final class MultipartForm: SummaryConvertible {
     // MARK: - Properties
 
     private var contents = [MultipartFormContent]()

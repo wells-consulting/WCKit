@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -100,15 +100,16 @@ public enum JSON {
         return encoder
     }()
 
-    private static func pathToEncodingContext(_ context: EncodingError.Context) -> String {
-        var path = [String]()
-        for key in context.codingPath {
-            path.append(key.stringValue)
-        }
-        return path.joined(separator: ".")
-    }
-
     public static func encode<T: Encodable>(_ value: T) throws -> Data {
+        
+        func pathToEncodingContext(_ context: EncodingError.Context) -> String {
+            var path = [String]()
+            for key in context.codingPath {
+                path.append(key.stringValue)
+            }
+            return path.joined(separator: ".")
+        }
+        
         do {
             return try encoder.encode(value)
         } catch let EncodingError.invalidValue(key, context) {

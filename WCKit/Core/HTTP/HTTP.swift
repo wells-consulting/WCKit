@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -71,13 +71,13 @@ public enum HTTP {
             "X-Requested-With": "WKKit",
             "X-IOSDevice-AppBuildNumber": Runtime.buildNumber,
             "X-IOSDevice-AppBundleIdentifier": Runtime.bundleIdentifier,
-            "X-IOSDevice-Name": Runtime.deviceName
+            "X-IOSDevice-Name": Runtime.deviceName,
         ]
         config.timeoutIntervalForRequest = 30 * 1000 // 30s
         config.httpCookieStorage = HTTP.cookieStorage
         return URLSession(configuration: config)
     }()
-    
+
     private static func send(
         to url: URL,
         method: Method,
@@ -103,7 +103,9 @@ public enum HTTP {
         mutableRequest.httpMethod = method.rawValue
         mutableRequest.httpBody = payload.data
 
-        for header in headers { mutableRequest.setValue(header.value, forHTTPHeaderField: header.field) }
+        for header in headers {
+            mutableRequest.setValue(header.value, forHTTPHeaderField: header.field)
+        }
 
         let request = mutableRequest as URLRequest
 
@@ -184,7 +186,7 @@ public enum HTTP {
 
                 return
             }
-            
+
             completion(.success(data))
 
         }.resume()

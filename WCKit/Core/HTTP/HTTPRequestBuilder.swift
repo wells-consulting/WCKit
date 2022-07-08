@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 
@@ -9,7 +9,11 @@ public final class HTTPRequestBuilder {
     private var requestHeaders = Set<HTTP.Header>()
 
     public init(urlPrefix: String) {
-        self.urlPrefix = urlPrefix
+        if urlPrefix.hasSuffix("/") {
+            self.urlPrefix = urlPrefix
+        } else {
+            self.urlPrefix = urlPrefix + "/"
+        }
     }
 
     @discardableResult
@@ -81,7 +85,7 @@ public final class HTTPRequestBuilder {
 
         return self
     }
-    
+
     fileprivate var url: URL {
         var components = [String]()
 
@@ -96,14 +100,14 @@ public final class HTTPRequestBuilder {
         let string = components.joined()
 
         let url = URL(string: string)
-        
+
         if url == nil {
             Log.error("'\(string)' not valid URL")
         }
 
         return url!
     }
-    
+
     fileprivate func decode<Value: Decodable>(
         _ data: Data?
     ) throws -> Value {
@@ -129,31 +133,30 @@ public final class HTTPRequestBuilder {
 // MARK: - Codable
 
 public extension HTTPRequestBuilder {
-    
     // MARK: GET
-    
+
     func get() async throws -> Data? {
         try await HTTP.get(url, payload: .none, headers: headers)
     }
-    
+
     func get<Response: Decodable>() async throws -> Response {
         setContentType(.json)
 
         let response = try await HTTP.get(url, payload: .none, headers: headers)
-        
+
         return try decode(response)
     }
-    
+
     // MARK: POST
-    
+
     func post() async throws -> Data? {
         setContentType(.json)
-        
+
         let response = try await HTTP.post(url, payload: .none, headers: headers)
-        
+
         return response
     }
-    
+
     func post<Response: Decodable>() async throws -> Response {
         setContentType(.json)
 
@@ -161,7 +164,7 @@ public extension HTTPRequestBuilder {
 
         return try decode(response)
     }
-    
+
     func post(_ payload: Data) async throws -> Data? {
         setContentType(.json)
 
@@ -174,13 +177,13 @@ public extension HTTPRequestBuilder {
             ),
             headers: headers
         )
-        
+
         return response
     }
-    
+
     func post(_ data: Data? = nil) async throws -> [String: Any] {
-       setContentType(.json)
-        
+        setContentType(.json)
+
         let payload: HTTPPayload
         if let data = data {
             payload = HTTPPayload(data: data, typeName: nil, summary: data.summary)
@@ -189,24 +192,24 @@ public extension HTTPRequestBuilder {
         }
 
         let response = try await HTTP.post(url, payload: payload, headers: headers)
-        
+
         guard
             let response = response,
             let jsonObject = JSONSerialization.decode(response)
         else {
             throw AppError("Returned data not JSON")
         }
-        
+
         return jsonObject
     }
-    
+
     func post<Payload: Encodable>(_ payload: Payload) async throws -> Data? {
         setContentType(.json)
 
         let summary = (payload as? SummaryConvertible)?.summary
 
         let encodedPayload = try JSON.encode(payload)
-        
+
         let response = try await HTTP.post(
             url,
             payload: HTTPPayload(
@@ -214,9 +217,9 @@ public extension HTTPRequestBuilder {
                 typeName: "\(payload.self)",
                 summary: summary ?? encodedPayload.summary
             ),
-            headers: self.headers
+            headers: headers
         )
-        
+
         return response
     }
 
@@ -228,7 +231,7 @@ public extension HTTPRequestBuilder {
         let summary = (payload as? SummaryConvertible)?.summary
 
         let encodedPayload = try JSON.encode(payload)
-        
+
         let response = try await HTTP.post(
             url,
             payload: HTTPPayload(
@@ -236,12 +239,12 @@ public extension HTTPRequestBuilder {
                 typeName: "\(payload.self)",
                 summary: summary ?? encodedPayload.summary
             ),
-            headers: self.headers
+            headers: headers
         )
-        
+
         return try decode(response)
     }
-    
+
     func post(
         _ payload: MultipartForm
     ) async throws -> Data? {
@@ -256,10 +259,10 @@ public extension HTTPRequestBuilder {
             ),
             headers: headers
         )
-        
+
         return response
     }
-    
+
     func post<Response: Decodable>(
         _ payload: MultipartForm
     ) async throws -> Response {
@@ -274,10 +277,10 @@ public extension HTTPRequestBuilder {
             ),
             headers: headers
         )
-        
+
         return try decode(response)
     }
-    
+
     // MARK: PUT
 
     func put<Payload: Encodable>(
@@ -288,7 +291,7 @@ public extension HTTPRequestBuilder {
         let summary = (payload as? SummaryConvertible)?.summary
 
         let encodedPayload = try JSON.encode(payload)
-        
+
         let response = try await HTTP.put(
             url,
             payload: HTTPPayload(
@@ -296,9 +299,9 @@ public extension HTTPRequestBuilder {
                 typeName: "\(payload.self)",
                 summary: summary ?? encodedPayload.summary
             ),
-            headers: self.headers
+            headers: headers
         )
-        
+
         return response
     }
 
@@ -310,7 +313,7 @@ public extension HTTPRequestBuilder {
         let summary = (payload as? SummaryConvertible)?.summary
 
         let encodedPayload = try JSON.encode(payload)
-        
+
         let response = try await HTTP.put(
             url,
             payload: HTTPPayload(
@@ -318,9 +321,9 @@ public extension HTTPRequestBuilder {
                 typeName: "\(payload.self)",
                 summary: summary ?? encodedPayload.summary
             ),
-            headers: self.headers
+            headers: headers
         )
-        
+
         return try decode(response)
     }
 
@@ -334,7 +337,7 @@ public extension HTTPRequestBuilder {
             payload: .none,
             headers: headers
         )
-        
+
         return response
     }
 }

@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 import UIKit
@@ -9,7 +9,7 @@ public final class Symbol {
     public init(name: String) {
         self.name = name
     }
-    
+
     convenience init(_ name: Name) {
         self.init(nameString: name.rawValue)
     }

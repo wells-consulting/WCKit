@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import UIKit
 
@@ -25,7 +25,7 @@ public final class Badge: UILabel {
         self.textInsets = textInsets
     }
 
-    public override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    override public func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         if text == nil {
             return super.textRect(forBounds: bounds, limitedToNumberOfLines: numberOfLines)
         }
@@ -42,7 +42,7 @@ public final class Badge: UILabel {
         return textRect.inset(by: invertedInsets)
     }
 
-    public override func drawText(in rect: CGRect) {
+    override public func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: textInsets))
     }
 

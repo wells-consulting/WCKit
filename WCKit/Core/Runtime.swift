@@ -1,8 +1,8 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
-import UIKit
 import OSLog
+import UIKit
 
 public enum Runtime {
     public static var bundleIdentifier: String = Bundle.main.bundleIdentifier!
@@ -24,7 +24,7 @@ public enum Runtime {
             return false
         }
     }
-    
+
     public static var deviceName: String { UIDevice.current.name }
 
     public static var deviceModelName: String { UIDevice.current.localizedModel }

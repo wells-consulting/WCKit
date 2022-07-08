@@ -1,4 +1,4 @@
-// Copyright © 2022 Wells Consulting LLC. All rights reserved.
+// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
 
 import Foundation
 import UIKit
@@ -125,7 +125,7 @@ public final class SegmentedButton: UIView {
 
     // MARK: - Overrides
 
-    public override func prepareForInterfaceBuilder() {
+    override public func prepareForInterfaceBuilder() {
         backgroundColor = .systemGroupedBackground
 
         let label = UILabel(frame: CGRect.zero)
