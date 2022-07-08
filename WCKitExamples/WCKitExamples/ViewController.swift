@@ -8,19 +8,32 @@
 import UIKit
 import WCKit
 
+struct Product: Codable {
+    let brand: String
+    let title: String
+    let thumbnail: URL?
+}
+
+struct ProductResponse: Codable {
+    let products: [Product]
+}
+
 class ViewController: UIViewController {
     @IBOutlet private var menubar: Menubar!
     @IBOutlet private var popupMenu: UIButton!
     @IBOutlet private var badge: UILabel!
     @IBOutlet private var prompt: PromptLabel!
-    @IBOutlet private var tabBar: TabBar!
-    @IBOutlet private var segmentedButton: SegmentedButton!
     @IBOutlet private var activityViewButton: UIButton!
-
+    @IBOutlet private var tableView: UITableView!
+    
+    private var products = LoadedData<[Product]>.loading
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         menubar.delegate = self
+        
+        tableView.addBorder()
 
         for index in MenubarParts.allCases.indices {
             let part = MenubarParts.allCases[index]
@@ -30,26 +43,6 @@ class ViewController: UIViewController {
                 initialValue: part.description
             )
         }
-
-        badge.text = "It's Happy Hour"
-
-        tabBar.addTab(
-            identifier: "Yes",
-            showCheckmarkWhenSelected: true,
-            accessoryImage: nil
-        ).setTitle("Yes")
-
-        tabBar.addTab(
-            identifier: "No",
-            showCheckmarkWhenSelected: true,
-            accessoryImage: nil
-        ).setTitle("No")
-
-        tabBar.addTab(
-            identifier: "Maybe",
-            showCheckmarkWhenSelected: true,
-            accessoryImage: nil
-        ).setTitle("Maybe")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +55,10 @@ class ViewController: UIViewController {
                     self.prompt.success("Found inner peace")
                 }
         )
+        
+        Task {
+            await loadTableView()
+        }
     }
 
     @IBAction
@@ -90,6 +87,23 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     av.dismiss()
                 }
+            }
+        }
+    }
+    
+    private func loadTableView() async {
+        do {
+        let response: ProductResponse = try await HTTPRequestBuilder(urlPrefix: "https://dummyjson.com/")
+            .appending("products")
+            .get()
+            DispatchQueue.main.async {
+                self.products = .loaded(response.products)
+                self.tableView.reloadData()
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.products = .error(error)
+                self.tableView.reloadData()
             }
         }
     }
@@ -187,5 +201,52 @@ extension ViewController: MenubarDelegate {
         )
 
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - UITableView
+
+final class ProductTVC: UITableViewCell {
+    @IBOutlet private var thumbnailImageView: UIImageView!
+    @IBOutlet private var brandLabel: UILabel!
+    @IBOutlet private var titleLabel: UILabel!
+    
+    func configure(_ product: Product) {
+        brandLabel.text = product.brand
+        titleLabel.text = product.title
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch products {
+        case .loading, .error:
+            return 1
+        case let .loaded(products):
+            return products.count
+        @unknown default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        switch products {
+        case .loading:
+            return tableView.makeLoadingCellFor(indexPath)
+        case let .error(error):
+            return tableView.makeErrorCellFor(indexPath, error: error)
+        case let .loaded(products):
+            let product = products[indexPath.row]
+            let cell: ProductTVC = tableView.makeCellFor(indexPath)
+            cell.configure(product)
+            return cell
+        @unknown default:
+            return tableView.makeErrorCellFor(indexPath, text: "Unknown error")
+        }
     }
 }

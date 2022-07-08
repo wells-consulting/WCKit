@@ -8,7 +8,7 @@ public final class HTTPRequestBuilder {
     private var queryParameters = [String]()
     private var requestHeaders = Set<HTTP.Header>()
 
-    init(urlPrefix: String) {
+    public init(urlPrefix: String) {
         self.urlPrefix = urlPrefix
     }
 
