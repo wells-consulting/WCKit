@@ -128,15 +128,15 @@ public final class HTTPRequestBuilder {
 
 // MARK: - Codable
 
-extension HTTPRequestBuilder {
+public extension HTTPRequestBuilder {
     
     // MARK: GET
     
-    public func get() async throws -> Data? {
+    func get() async throws -> Data? {
         try await HTTP.get(url, payload: .none, headers: headers)
     }
     
-    public func get<Response: Decodable>() async throws -> Response {
+    func get<Response: Decodable>() async throws -> Response {
         setContentType(.json)
 
         let response = try await HTTP.get(url, payload: .none, headers: headers)
@@ -146,7 +146,7 @@ extension HTTPRequestBuilder {
     
     // MARK: POST
     
-    public func post() async throws -> Data? {
+    func post() async throws -> Data? {
         setContentType(.json)
         
         let response = try await HTTP.post(url, payload: .none, headers: headers)
@@ -154,7 +154,7 @@ extension HTTPRequestBuilder {
         return response
     }
     
-    public func post<Response: Decodable>() async throws -> Response {
+    func post<Response: Decodable>() async throws -> Response {
         setContentType(.json)
 
         let response = try await HTTP.post(url, payload: .none, headers: headers)
@@ -162,7 +162,7 @@ extension HTTPRequestBuilder {
         return try decode(response)
     }
     
-    public func post(_ payload: Data) async throws -> Data? {
+    func post(_ payload: Data) async throws -> Data? {
         setContentType(.json)
 
         let response = try await HTTP.post(
@@ -178,7 +178,7 @@ extension HTTPRequestBuilder {
         return response
     }
     
-    public func post(_ data: Data? = nil) async throws -> [String: Any] {
+    func post(_ data: Data? = nil) async throws -> [String: Any] {
        setContentType(.json)
         
         let payload: HTTPPayload
@@ -200,7 +200,7 @@ extension HTTPRequestBuilder {
         return jsonObject
     }
     
-    public func post<Payload: Encodable>(_ payload: Payload) async throws -> Data? {
+    func post<Payload: Encodable>(_ payload: Payload) async throws -> Data? {
         setContentType(.json)
 
         let summary = (payload as? SummaryConvertible)?.summary
@@ -220,7 +220,7 @@ extension HTTPRequestBuilder {
         return response
     }
 
-    public func post<Payload: Encodable, Response: Decodable>(
+    func post<Payload: Encodable, Response: Decodable>(
         _ payload: Payload
     ) async throws -> Response {
         setContentType(.json)
@@ -242,7 +242,7 @@ extension HTTPRequestBuilder {
         return try decode(response)
     }
     
-    public func post(
+    func post(
         _ payload: MultipartForm
     ) async throws -> Data? {
         setContentType(.multipartForm)
@@ -260,7 +260,7 @@ extension HTTPRequestBuilder {
         return response
     }
     
-    public func post<Response: Decodable>(
+    func post<Response: Decodable>(
         _ payload: MultipartForm
     ) async throws -> Response {
         setContentType(.multipartForm)
@@ -280,7 +280,7 @@ extension HTTPRequestBuilder {
     
     // MARK: PUT
 
-    public func put<Payload: Encodable>(
+    func put<Payload: Encodable>(
         _ payload: Payload
     ) async throws -> Data? {
         setContentType(.json)
@@ -302,7 +302,7 @@ extension HTTPRequestBuilder {
         return response
     }
 
-    public func put<Payload: Encodable, Response: Decodable>(
+    func put<Payload: Encodable, Response: Decodable>(
         _ payload: Payload
     ) async throws -> Response {
         setContentType(.json)
@@ -326,7 +326,7 @@ extension HTTPRequestBuilder {
 
     // MARK: DELETE
 
-    public func delete() async throws -> Data? {
+    func delete() async throws -> Data? {
         setContentType(.json)
 
         let response = try await HTTP.delete(

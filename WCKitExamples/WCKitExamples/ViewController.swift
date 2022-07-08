@@ -8,8 +8,6 @@
 import UIKit
 import WCKit
 
-// swiftlint:disable all
-
 class ViewController: UIViewController {
     @IBOutlet private var menubar: Menubar!
     @IBOutlet private var popupMenu: UIButton!
@@ -18,12 +16,12 @@ class ViewController: UIViewController {
     @IBOutlet private var tabBar: TabBar!
     @IBOutlet private var segmentedButton: SegmentedButton!
     @IBOutlet private var activityViewButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         menubar.delegate = self
-        
+
         for index in MenubarParts.allCases.indices {
             let part = MenubarParts.allCases[index]
             menubar.addTextMenuItem(
@@ -32,31 +30,31 @@ class ViewController: UIViewController {
                 initialValue: part.description
             )
         }
-        
+
         badge.text = "It's Happy Hour"
-        
+
         tabBar.addTab(
             identifier: "Yes",
             showCheckmarkWhenSelected: true,
             accessoryImage: nil
         ).setTitle("Yes")
-        
+
         tabBar.addTab(
             identifier: "No",
             showCheckmarkWhenSelected: true,
             accessoryImage: nil
         ).setTitle("No")
-        
+
         tabBar.addTab(
             identifier: "Maybe",
             showCheckmarkWhenSelected: true,
             accessoryImage: nil
         ).setTitle("Maybe")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+
         prompt.info(
             "Searching...",
             presentation: .custom(
@@ -65,11 +63,11 @@ class ViewController: UIViewController {
                 }
         )
     }
-    
+
     @IBAction
-    func popupMenuButtonTapped(_ sender: UIButton) {
+    private func popupMenuButtonTapped(_ sender: UIButton) {
         let menu = PopupMenu()
-        
+
         for condition in PopupMenuParts.allCases {
             menu.addItem(
                 id: condition.rawValue,
@@ -77,13 +75,13 @@ class ViewController: UIViewController {
                 label: condition.description
             )
         }
-        
+
         let vc = PopupMenuVC.make(from: menu, delegate: self)
         show(vc, as: .popover, at: sender)
     }
-    
+
     @IBAction
-    func activityViewButtonTapped(_ sender: UIButton) {
+    private func activityViewButtonTapped(_ sender: UIButton) {
         let av = ActivityView()
         av.show("Waiting...") {
             DispatchQueue.global().asyncAfter(
@@ -105,7 +103,7 @@ enum PopupMenuParts: Int, CustomStringConvertible, CaseIterable {
     case windy
     case raining
     case snowing
-    
+
     var description: String {
         switch self {
         case .sunny: return "Sunny"
@@ -115,7 +113,7 @@ enum PopupMenuParts: Int, CustomStringConvertible, CaseIterable {
         case .snowing: return "Snowing"
         }
     }
-    
+
     var symbol: Symbol {
         switch self {
         case .sunny:
@@ -140,17 +138,17 @@ enum PopupMenuParts: Int, CustomStringConvertible, CaseIterable {
 extension ViewController: PopupMenuDelegate {
     func popupMenuDidSelectItem(withID id: Int, tag: Int) {
         let text = PopupMenuParts(rawValue: id)?.description ?? String(id)
-        
+
         let alert = UIAlertController(
             title: "Popup Menu",
             message: "Tapped item \(text)",
             preferredStyle: .alert
         )
-        
+
         alert.addAction(
             UIAlertAction(title: "OK", style: .default)
         )
-        
+
         present(alert, animated: true, completion: nil)
     }
 }
@@ -158,19 +156,19 @@ extension ViewController: PopupMenuDelegate {
 // MARK: - Menubar
 
 enum MenubarParts: Int, CustomStringConvertible, CaseIterable {
-    case cat
-    case dog
-    case pig
-    case snake
-    case rock
-    
+    case apple
+    case orange
+    case lemon
+    case lime
+    case tangerine
+
     var description: String {
         switch self {
-        case .cat: return "Cat"
-        case .dog: return "Dog"
-        case .pig: return "Pig"
-        case .snake: return "Snake"
-        case .rock: return "Rock"
+        case .apple: return "Apple"
+        case .orange: return "Orange"
+        case .lemon: return "Lemon"
+        case .lime: return "Lime"
+        case .tangerine: return "Tangerine"
         }
     }
 }
@@ -183,12 +181,11 @@ extension ViewController: MenubarDelegate {
             message: "Tapped menubar item \(text)",
             preferredStyle: .alert
         )
-        
+
         alert.addAction(
             UIAlertAction(title: "OK", style: .default)
         )
-        
+
         present(alert, animated: true, completion: nil)
     }
 }
-

@@ -122,8 +122,8 @@ public enum JSON {
 
 // MARK: -
 
-extension JSONSerialization {
-    public static func decode(_ data: Data) -> [String: Any]? {
+public extension JSONSerialization {
+    static func decode(_ data: Data) -> [String: Any]? {
         guard let value = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
         return value as? [String: Any]
     }
@@ -253,48 +253,48 @@ extension JSONValue: Codable {
 
 // MARK: - Accessors
 
-extension JSONValue {
-    public var int: Int? {
+public extension JSONValue {
+    var int: Int? {
         guard case let .int(value) = self else { return nil }
         return value
     }
 
-    public var int64: Int64? {
+    var int64: Int64? {
         guard case let .int64(value) = self else { return nil }
         return value
     }
 
-    public var decimal: Decimal? {
+    var decimal: Decimal? {
         guard case let .decimal(value) = self else { return nil }
         return value
     }
 
-    public var double: Double? {
+    var double: Double? {
         guard case let .double(value) = self else { return nil }
         return value
     }
 
-    public var string: String? {
+    var string: String? {
         guard case let .string(value) = self else { return nil }
         return value
     }
 
-    public var isNil: Bool {
+    var isNil: Bool {
         guard case .null = self else { return false }
         return true
     }
 
-    public var bool: Bool? { // swiftlint:disable:this discouraged_optional_boolean
+    var bool: Bool? { // swiftlint:disable:this discouraged_optional_boolean
         guard case let .bool(value) = self else { return nil }
         return value
     }
 
-    public var array: [JSONValue]? {
+    var array: [JSONValue]? {
         guard case let .array(value) = self else { return nil }
         return value
     }
 
-    public var object: [String: JSONValue]? {
+    var object: [String: JSONValue]? {
         guard case let .object(value) = self else { return nil }
         return value
     }

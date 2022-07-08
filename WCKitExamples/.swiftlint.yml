@@ -1,0 +1,43 @@
+excluded:
+  - .git
+  - build
+  - build_cache
+  - Core/Generated
+  - fastlane
+  - Support
+  - Tests
+  - Vendor
+disabled_rules:
+  - comment_spacing
+  - cyclomatic_complexity
+  - file_length
+  - identifier_name
+  - notification_center_detachment
+  - opening_brace
+  - trailing_comma
+  - type_name
+  - nesting
+opt_in_rules:
+  - anyobject_protocol
+  - array_init
+    # attributes has a lot of false positives
+    #  - attributes 
+  - discouraged_optional_boolean
+  - extension_access_modifier
+  - flatmap_over_map_reduce
+  - multiline_arguments_brackets
+  - private_outlet
+  - prefer_zero_over_explicit_init
+  - private_action
+  - unused_import
+  - yoda_condition
+function_body_length:
+  warning: 200
+  error: 500
+line_length:
+  warning: 180
+trailing_whitespace:
+  ignores_empty_lines: true
+type_body_length:
+  warning: 5000
+  error: 10000
