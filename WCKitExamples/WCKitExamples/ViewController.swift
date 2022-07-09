@@ -19,10 +19,10 @@ struct ProductResponse: Codable {
 }
 
 class ViewController: UIViewController {
-    @IBOutlet private var menubar: Menubar!
+    @IBOutlet private var menubar: WCMenubar!
     @IBOutlet private var popupMenu: UIButton!
     @IBOutlet private var badge: UILabel!
-    @IBOutlet private var prompt: PromptLabel!
+    @IBOutlet private var prompt: WCPromptLabel!
     @IBOutlet private var activityViewButton: UIButton!
     @IBOutlet private var tableView: UITableView!
     
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 
     @IBAction
     private func popupMenuButtonTapped(_ sender: UIButton) {
-        let menu = PopupMenu()
+        let menu = WCPopupMenu()
 
         for condition in PopupMenuParts.allCases {
             menu.addItem(
@@ -73,13 +73,13 @@ class ViewController: UIViewController {
             )
         }
 
-        let vc = PopupMenuVC.make(from: menu, delegate: self)
+        let vc = WCPopupMenuVC.make(from: menu, delegate: self)
         show(vc, as: .popover, at: sender)
     }
 
     @IBAction
     private func activityViewButtonTapped(_ sender: UIButton) {
-        let av = ActivityView()
+        let av = WCActivityView()
         av.show("Waiting...") {
             DispatchQueue.global().asyncAfter(
                 deadline: DispatchTime.now() + .seconds(2)
@@ -128,28 +128,28 @@ enum PopupMenuParts: Int, CustomStringConvertible, CaseIterable {
         }
     }
 
-    var symbol: Symbol {
+    var symbol: WCSymbol {
         switch self {
         case .sunny:
-            return Symbol(name: "sun.max.fill")
+            return WCSymbol(systemName: "sun.max.fill")
                 .autoTint(basedOn: .systemOrange)
         case .cloudy:
-            return Symbol(name: "cloud.fill")
+            return WCSymbol(systemName: "cloud.fill")
                 .autoTint(basedOn: .systemOrange)
         case .windy:
-            return Symbol(name: "wind")
+            return WCSymbol(systemName: "wind")
                 .autoTint(basedOn: .systemOrange)
         case .raining:
-            return Symbol(name: "cloud.drizzle.fill")
+            return WCSymbol(systemName: "cloud.drizzle.fill")
                 .autoTint(basedOn: .systemOrange)
         case .snowing:
-            return Symbol(name: "cloud.snow.fill")
+            return WCSymbol(systemName: "cloud.snow.fill")
                 .autoTint(basedOn: .systemOrange)
         }
     }
 }
 
-extension ViewController: PopupMenuDelegate {
+extension ViewController: WCPopupMenuDelegate {
     func popupMenuDidSelectItem(withID id: Int, tag: Int) {
         let text = PopupMenuParts(rawValue: id)?.description ?? String(id)
 
@@ -187,7 +187,7 @@ enum MenubarParts: Int, CustomStringConvertible, CaseIterable {
     }
 }
 
-extension ViewController: MenubarDelegate {
+extension ViewController: WCMenubarDelegate {
     func menubarDidSelectItem(withID id: Int) {
         let text = MenubarParts(rawValue: id)?.description ?? String(id)
         let alert = UIAlertController(
@@ -214,6 +214,14 @@ final class ProductTVC: UITableViewCell {
     func configure(_ product: Product) {
         brandLabel.text = product.brand
         titleLabel.text = product.title
+        
+        if let url = product.thumbnail {
+            thumbnailImageView.load(url)
+        } else {
+            thumbnailImageView.image = WCSymbol(.photo).image
+        }
+        
+        thumbnailImageView.addBorder()
     }
 }
 

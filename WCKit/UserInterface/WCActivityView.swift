@@ -1,9 +1,9 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public final class ActivityView: UIView {
+public final class WCActivityView: UIView {
     private var activityIndicatorView: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(frame: .zero)
         view.style = .large
@@ -52,7 +52,7 @@ public final class ActivityView: UIView {
     }
 
     private var cancelButton: UIButton?
-    private var cancelAction: ((ActivityView) -> Void)?
+    private var cancelAction: ((WCActivityView) -> Void)?
     private(set) var isDismissed: Bool = false
 
     required init?(coder aDecoder: NSCoder) {
@@ -63,10 +63,10 @@ public final class ActivityView: UIView {
     public init(key: String? = nil) {
         self.key = key
         super.init(frame: CGRect.zero)
-        if let key = key { ActivityView.instances[key] = self }
+        if let key = key { WCActivityView.instances[key] = self }
     }
 
-    private static var instances = [String: ActivityView]()
+    private static var instances = [String: WCActivityView]()
 
     public func show(
         _ message: String,
@@ -175,7 +175,7 @@ public final class ActivityView: UIView {
     }
 
     public static func dismiss(_ key: String) {
-        ActivityView.instances[key]?.dismiss()
+        WCActivityView.instances[key]?.dismiss()
     }
 
     public func dismiss() {
@@ -187,7 +187,7 @@ public final class ActivityView: UIView {
 
         dimmingView.removeFromSuperview()
 
-        if let key = key { ActivityView.instances.removeValue(forKey: key) }
+        if let key = key { WCActivityView.instances.removeValue(forKey: key) }
     }
 
     @objc

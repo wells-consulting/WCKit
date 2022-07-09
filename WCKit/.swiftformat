@@ -4,7 +4,7 @@
 --exclude ./Tests
 --exclude ./Vendor
 
---header "Copyright © 2016-2022 Velky Brands LLC. All rights reserved."
+--header "Copyright © 2022 Wells Consulting LLC. All rights reserved."
 
 --allman false
 --binarygrouping none

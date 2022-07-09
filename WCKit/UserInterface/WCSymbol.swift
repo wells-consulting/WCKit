@@ -1,16 +1,16 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public final class Symbol {
+public final class WCSymbol {
     public let name: String
 
-    public init(name: String) {
-        self.name = name
+    public init(systemName: String) {
+        self.name = systemName
     }
 
-    convenience init(_ name: Name) {
+    public convenience init(_ name: Name) {
         self.init(nameString: name.rawValue)
     }
 
@@ -20,9 +20,9 @@ public final class Symbol {
     }
 
     private init(nameString: String) {
-        name = Symbol.cleanupName(nameString)
+        name = WCSymbol.cleanupName(nameString)
 
-        if name.hasPrefix("status"), let symbolName = Symbol.Name(rawValue: name) {
+        if name.hasPrefix("status"), let symbolName = WCSymbol.Name(rawValue: name) {
             switch symbolName {
             case .statusAdded:
                 palette(foregroundColor: .black, backgroundColor: .systemGreen)
@@ -74,7 +74,7 @@ public final class Symbol {
 
     // MARK: Size
 
-    public func font(_ font: UIFont) -> Symbol {
+    public func font(_ font: UIFont) -> WCSymbol {
         sizeConfiguration = UIImage.SymbolConfiguration(font: font, scale: .large)
         return self
     }
@@ -82,19 +82,19 @@ public final class Symbol {
     // MARK: Color
 
     @discardableResult
-    public func color(_ color: UIColor) -> Symbol {
+    public func color(_ color: UIColor) -> WCSymbol {
         colorConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: color)
         return self
     }
 
     @discardableResult
-    public func autoTint(basedOn color: UIColor) -> Symbol {
+    public func autoTint(basedOn color: UIColor) -> WCSymbol {
         colorConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: color)
         return self
     }
 
     @discardableResult
-    public func palette(foregroundColor: UIColor, backgroundColor: UIColor) -> Symbol {
+    public func palette(foregroundColor: UIColor, backgroundColor: UIColor) -> WCSymbol {
         colorConfiguration = UIImage.SymbolConfiguration(
             paletteColors: [foregroundColor, backgroundColor]
         )
@@ -102,7 +102,7 @@ public final class Symbol {
     }
 }
 
-public extension Symbol {
+public extension WCSymbol {
     enum Name: String, CaseIterable {
         // MARK: Objects
 
@@ -203,8 +203,8 @@ public extension Symbol {
 extension UIButton {
     // NOTE: Buttons are auto-styled
 
-    func setSymbol(name: Symbol.Name, font: UIFont) {
-        let image = Symbol(name)
+    func setSymbol(name: WCSymbol.Name, font: UIFont) {
+        let image = WCSymbol(name)
             .palette(
                 foregroundColor: titleColor(for: .normal) ?? UIColor.black,
                 backgroundColor: backgroundColor ?? UIColor.white
@@ -220,7 +220,7 @@ extension UIButton {
 
 extension UIImageView {
     func checkbox(isChecked: Bool) {
-        let symbol = Symbol(isChecked ? .checkboxChecked : .checkboxUnchecked)
+        let symbol = WCSymbol(isChecked ? .checkboxChecked : .checkboxUnchecked)
             .palette(foregroundColor: .systemBlue, backgroundColor: .black)
         image = symbol.image
     }

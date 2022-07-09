@@ -1,9 +1,9 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public final class MenubarPart {
+final class MenubarPart {
     enum Content {
         case text(String)
         case field(String, String)
@@ -20,24 +20,24 @@ public final class MenubarPart {
     }
 
     let id: Int
-    private(set) var state: ControlState
+    private(set) var state: WCControlState
 
     var isDisabled: Bool { state.isDisabled }
     var isHidden: Bool { state.isHidden }
 
-    init(id: Int, state: ControlState, initialValue: String) {
+    init(id: Int, state: WCControlState, initialValue: String) {
         self.id = id
         self.state = state
         content = .text(initialValue)
     }
 
-    init(id: Int, state: ControlState, label: String, initialValue: String) {
+    init(id: Int, state: WCControlState, label: String, initialValue: String) {
         self.id = id
         self.state = state
         content = .field(label, initialValue)
     }
 
-    fileprivate func setState(_ state: ControlState) { self.state = state }
+    fileprivate func setState(_ state: WCControlState) { self.state = state }
 
     fileprivate func setValue(_ value: String) {
         switch content {
@@ -67,12 +67,12 @@ public final class MenubarPart {
     }
 }
 
-public protocol MenubarDelegate: AnyObject {
+public protocol WCMenubarDelegate: AnyObject {
     func menubarDidSelectItem(withID id: Int)
 }
 
-public final class Menubar: UILabel {
-    public weak var delegate: MenubarDelegate?
+public final class WCMenubar: UILabel {
+    public weak var delegate: WCMenubarDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -128,7 +128,7 @@ public final class Menubar: UILabel {
 
     public func addTextMenuItem(
         id: Int,
-        state: ControlState,
+        state: WCControlState,
         initialValue: String
     ) {
         guard !items.contains(where: { $0.id == id }) else { return }
@@ -140,7 +140,7 @@ public final class Menubar: UILabel {
 
     public func addFieldMenuItem(
         id: Int,
-        state: ControlState,
+        state: WCControlState,
         label: String,
         initialValue: String
     ) {
@@ -151,7 +151,7 @@ public final class Menubar: UILabel {
         update()
     }
 
-    public func setState(_ state: ControlState, forItemWithID id: Int) {
+    public func setState(_ state: WCControlState, forItemWithID id: Int) {
         guard let item = items.first(where: { $0.id == id }) else { return }
         item.setState(state)
         update()
@@ -199,7 +199,7 @@ public final class Menubar: UILabel {
         )
 
         if showMenuSymbol {
-            let symbol = Symbol(.menubarIndicator)
+            let symbol = WCSymbol(.menubarIndicator)
                 .palette(foregroundColor: .black, backgroundColor: .systemGray3)
             builder.appendSymbol(symbol)
             builder.appendSpacer(count: 1)

@@ -1,33 +1,34 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public enum PromptType {
-    case info
-    case error
-    case success
-    case warning
+public final class WCPromptLabel: UILabel {
+    
+    public enum Style {
+        case info
+        case error
+        case success
+        case warning
 
-    public var symbol: Symbol {
-        switch self {
-        case .info:
-            return Symbol(.statusInfo)
-                .palette(foregroundColor: .white, backgroundColor: .black)
-        case .warning:
-            return Symbol(.statusWarning)
-                .palette(foregroundColor: .black, backgroundColor: .systemOrange)
-        case .error:
-            return Symbol(.statusError)
-                .palette(foregroundColor: .white, backgroundColor: .systemRed)
-        case .success:
-            return Symbol(.statusSuccess)
-                .palette(foregroundColor: .black, backgroundColor: .systemGreen)
+        public var symbol: WCSymbol {
+            switch self {
+            case .info:
+                return WCSymbol(.statusInfo)
+                    .palette(foregroundColor: .white, backgroundColor: .black)
+            case .warning:
+                return WCSymbol(.statusWarning)
+                    .palette(foregroundColor: .black, backgroundColor: .systemOrange)
+            case .error:
+                return WCSymbol(.statusError)
+                    .palette(foregroundColor: .white, backgroundColor: .systemRed)
+            case .success:
+                return WCSymbol(.statusSuccess)
+                    .palette(foregroundColor: .black, backgroundColor: .systemGreen)
+            }
         }
     }
-}
-
-public final class PromptLabel: UILabel {
+    
     public enum Presentation {
         case `static`
         case custom(pulseDuration: Double?, onFinish: () -> Void)
@@ -55,33 +56,33 @@ public final class PromptLabel: UILabel {
     }
 
     public func success(_ text: String, presentation: Presentation = .static) {
-        setText(text, type: .success, presentation: presentation)
+        setText(text, style: .success, presentation: presentation)
     }
 
     public func info(_ text: String, presentation: Presentation = .static) {
-        setText(text, type: .info, presentation: presentation)
+        setText(text, style: .info, presentation: presentation)
     }
 
     public func warning(_ text: String, presentation: Presentation = .static) {
-        setText(text, type: .warning, presentation: presentation)
+        setText(text, style: .warning, presentation: presentation)
     }
 
     public func error(_ error: Error, presentation: Presentation = .static) {
-        setText(error.localizedDescription, type: .error, presentation: presentation)
+        setText(error.localizedDescription, style: .error, presentation: presentation)
     }
 
     public func error(_ text: String, presentation: Presentation = .static) {
-        setText(text, type: .error, presentation: presentation)
+        setText(text, style: .error, presentation: presentation)
     }
 
-    public func setText(_ text: String, type: PromptType, presentation: Presentation = .static) {
+    public func setText(_ text: String, style: Style, presentation: Presentation = .static) {
         layer.removeAllAnimations()
 
         isHidden = false
 
         let builder = AttributedStringBuilder(font: font)
 
-        builder.appendSymbol(type.symbol)
+        builder.appendSymbol(style.symbol)
         builder.appendSpacer(count: 2)
 
         builder.appendText(

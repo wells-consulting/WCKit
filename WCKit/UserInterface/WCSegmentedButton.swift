@@ -1,14 +1,14 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public protocol SegmentedButtonDelegate: AnyObject {
-    func segmentedButtonDidSelect(_ sender: SegmentedButton, didSelectButtonAt index: Int)
+public protocol WCSegmentedButtonDelegate: AnyObject {
+    func segmentedButtonDidSelect(_ sender: WCSegmentedButton, didSelectButtonAt index: Int)
 }
 
 @IBDesignable
-public final class SegmentedButton: UIView {
+public final class WCSegmentedButton: UIView {
     // MARK: Types
 
     private class Segment: UIView {
@@ -47,7 +47,7 @@ public final class SegmentedButton: UIView {
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
             imageView.tintColor = .white
-            imageView.image = Symbol(.checkmark).image
+            imageView.image = WCSymbol(.checkmark).image
             imageView.translatesAutoresizingMaskIntoConstraints = false
             imageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
             imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -74,7 +74,7 @@ public final class SegmentedButton: UIView {
     private let stackView: UIStackView
     private var segments = [Segment]()
 
-    weak var delegate: SegmentedButtonDelegate?
+    weak var delegate: WCSegmentedButtonDelegate?
 
     private let primaryBackground = UIColor.black
     private let primaryForeground = UIColor.white

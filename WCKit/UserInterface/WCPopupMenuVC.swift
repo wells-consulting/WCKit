@@ -1,25 +1,25 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public protocol PopupMenuDelegate: AnyObject {
+public protocol WCPopupMenuDelegate: AnyObject {
     func popupMenuDidSelectItem(withID id: Int, tag: Int)
 }
 
-public final class PopupMenuVC: UIViewController {
+public final class WCPopupMenuVC: UIViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var closeButton: UIButton!
 
-    private var menu: PopupMenu!
-    private weak var delegate: PopupMenuDelegate?
+    private var menu: WCPopupMenu!
+    private weak var delegate: WCPopupMenuDelegate?
 
-    public static func make(from menu: PopupMenu, delegate: PopupMenuDelegate) -> PopupMenuVC {
+    public static func make(from menu: WCPopupMenu, delegate: WCPopupMenuDelegate) -> WCPopupMenuVC {
         let name = "\(Self.self)"
 
         let storyboard = UIStoryboard(
             name: name,
-            bundle: Bundle(for: PopupMenuVC.self)
+            bundle: Bundle(for: WCPopupMenuVC.self)
         )
 
         guard let vc = storyboard.instantiateViewController(withIdentifier: name) as? Self else {
@@ -50,7 +50,7 @@ public final class PopupMenuVC: UIViewController {
 
 // MARK: - UITableViewDelegate
 
-extension PopupMenuVC: UITableViewDelegate {
+extension WCPopupMenuVC: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = menu.items[indexPath.row]
         Log.info("Menu item '\(item.label)' tapped")

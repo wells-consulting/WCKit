@@ -29,7 +29,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="MENUBAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcP-AZ-vgU" customClass="Menubar" customModule="WCKit">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="MENUBAR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KcP-AZ-vgU" customClass="WCMenubar" customModule="WCKit">
                                                 <rect key="frame" x="0.0" y="22" width="99" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -49,21 +49,21 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hFy-T5-YDz">
                                                 <rect key="frame" x="0.0" y="22" width="252" height="40"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RB-MU-hR7" customClass="Badge" customModule="WCKit">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RB-MU-hR7" customClass="WCBadge" customModule="WCKit">
                                                         <rect key="frame" x="0.0" y="0.0" width="67" height="40"/>
                                                         <color key="backgroundColor" systemColor="systemTealColor"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tT-i6-lBb" customClass="Badge" customModule="WCKit">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tT-i6-lBb" customClass="WCBadge" customModule="WCKit">
                                                         <rect key="frame" x="77" y="0.0" width="81.5" height="40"/>
                                                         <color key="backgroundColor" systemColor="systemGray3Color"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InO-aB-13v" customClass="Badge" customModule="WCKit">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Review" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="InO-aB-13v" customClass="WCBadge" customModule="WCKit">
                                                         <rect key="frame" x="168.5" y="0.0" width="83.5" height="40"/>
                                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -159,7 +159,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="PROMPT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-dj-CaW" customClass="PromptLabel" customModule="WCKit">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="PROMPT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-dj-CaW" customClass="WCPromptLabel" customModule="WCKit">
                                                 <rect key="frame" x="0.0" y="22" width="84" height="24"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
@@ -167,7 +167,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghx-RQ-38k" customClass="TableView" customModule="WCKit">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="96" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghx-RQ-38k" customClass="WCTableView" customModule="WCKit">
                                         <rect key="frame" x="0.0" y="346" width="374" height="432"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -216,7 +216,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="brandLabel" destination="ujH-wi-Jcq" id="dNR-fl-333"/>
-                                                    <outlet property="selectedBackgroundView" destination="NXc-Gc-PcY" id="i4Q-7r-KM6"/>
+                                                    <outlet property="thumbnailImageView" destination="NXc-Gc-PcY" id="qCc-me-edy"/>
                                                     <outlet property="titleLabel" destination="9uN-uo-pju" id="IG3-DM-rwA"/>
                                                 </connections>
                                             </tableViewCell>

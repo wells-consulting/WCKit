@@ -1,23 +1,23 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public enum PopupMenuItemType {
+public enum WCPopupMenuItemType {
     case destructive
     case standard
     case warning
 }
 
-public class PopupMenuItem {
+public class WCPopupMenuItem {
     let id: Int
-    let symbol: Symbol
+    let symbol: WCSymbol
     let label: String
     var isDisabled: Bool
 
     init(
         id: Int,
-        symbol: Symbol,
+        symbol: WCSymbol,
         label: String,
         isDisabled: Bool
     ) {
@@ -28,20 +28,20 @@ public class PopupMenuItem {
     }
 }
 
-public final class PopupMenu: NSObject {
-    private(set) var items = [PopupMenuItem]()
+public final class WCPopupMenu: NSObject {
+    private(set) var items = [WCPopupMenuItem]()
 
     public var isEmpty: Bool { items.isEmpty }
 
     public func addItem(
         id: Int,
-        symbol: Symbol,
+        symbol: WCSymbol,
         label: String,
         isDisabled: Bool = false
     ) {
         guard !items.contains(where: { $0.id == id }) else { return }
 
-        let item = PopupMenuItem(
+        let item = WCPopupMenuItem(
             id: id,
             symbol: symbol,
             label: label,
@@ -64,7 +64,7 @@ public final class PopupMenu: NSObject {
 
 // MARK: - UITableViewDataSource
 
-extension PopupMenu: UITableViewDataSource {
+extension WCPopupMenu: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int { 1 }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +86,7 @@ class PopupMenuItemTVC: UITableViewCell {
     @IBOutlet private var menuItemImageView: UIImageView!
     @IBOutlet private var menuItemImageViewContainingView: UIView!
 
-    func configure(_ item: PopupMenuItem) {
+    func configure(_ item: WCPopupMenuItem) {
         menuItemLabel.text = item.label
         menuItemImageView.image = item.symbol.font(menuItemLabel.font).image
     }

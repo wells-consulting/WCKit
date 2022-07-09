@@ -1,4 +1,4 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
@@ -10,7 +10,7 @@ private protocol AttributedStringPart {
 public class AttributedStringBuilder {
     private struct SymbolPart: AttributedStringPart {
         let font: UIFont
-        let symbol: Symbol
+        let symbol: WCSymbol
 
         func add(to buffer: NSMutableAttributedString) {
             guard let image = symbol.font(font).image else {
@@ -87,7 +87,7 @@ public class AttributedStringBuilder {
         parts.append(SpacerPart(font: font, count: count))
     }
 
-    public func appendSymbol(_ symbol: Symbol) {
+    public func appendSymbol(_ symbol: WCSymbol) {
         parts.append(SymbolPart(font: font, symbol: symbol))
     }
 

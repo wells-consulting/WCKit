@@ -1,22 +1,17 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public protocol TabBarDelegate: AnyObject {
-    func tabBar(_ tabBar: TabBar, didSelectTab tab: TabBar.Tab)
+public protocol WCTabBarDelegate: AnyObject {
+    func tabBar(_ tabBar: WCTabBar, didSelectTab tab: WCTabBar.Tab)
 }
 
 @IBDesignable
-public class TabBar: UIView {
-    public enum TabBarType {
-        case primary
-        case secondary
-    }
-
+public class WCTabBar: UIView {
     public var tabs = [Tab]()
 
-    public weak var delegate: TabBarDelegate!
+    public weak var delegate: WCTabBarDelegate!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -39,9 +34,7 @@ public class TabBar: UIView {
 
     public static let nilTab = Tab()
 
-    public var tabBarType: TabBarType = .primary
-
-    public var selectedTab: Tab = TabBar.nilTab {
+    public var selectedTab: Tab = WCTabBar.nilTab {
         didSet {
             guard selectedTab != oldValue else { return }
             for tab in tabs { tab.isSelected = tab == selectedTab }
@@ -72,7 +65,6 @@ public class TabBar: UIView {
     ) -> Tab {
         let tabView = TabView(
             identifier: identifier,
-            tabBarType: tabBarType,
             showCheckmarkWhenSelected: showCheckmarkWhenSelected,
             target: self,
             action: #selector(tabTapped(_:)),
@@ -143,7 +135,7 @@ public class TabBar: UIView {
 
         let checkmarkImageView: UIImageView = {
             let imageView = UIImageView(frame: CGRect.zero)
-            imageView.image = Symbol(.checkmark).image
+            imageView.image = WCSymbol(.checkmark).image
             imageView.isUserInteractionEnabled = true
             imageView.contentMode = .scaleAspectFit
             imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -169,7 +161,6 @@ public class TabBar: UIView {
             return imageView
         }()
 
-        let tabBarType: TabBarType
         let showCheckmarkWhenSelected: Bool
 
         @available(*, unavailable)
@@ -179,13 +170,11 @@ public class TabBar: UIView {
 
         init(
             identifier: String,
-            tabBarType: TabBarType,
             showCheckmarkWhenSelected: Bool,
             target: AnyObject,
             action: Selector,
             accessoryImage: UIImage?
         ) {
-            self.tabBarType = tabBarType
             self.showCheckmarkWhenSelected = showCheckmarkWhenSelected
 
             super.init(frame: CGRect.zero)
@@ -227,27 +216,9 @@ public class TabBar: UIView {
         }
 
         private func styleTab() {
-            let fgColor: UIColor
-            let bgColor: UIColor
-
-            let primaryBackground = UIColor.black
-            let primaryForeground = UIColor.white
-
-            let secondaryBackground = UIColor.white
-            let secondaryForeground = UIColor.black
-
-            let unselectedBackground = UIColor.systemGray2
-            let unselectedForeground = UIColor.black
-
-            switch tabBarType {
-            case .primary:
-                fgColor = isSelected ? primaryForeground : unselectedForeground
-                bgColor = isSelected ? primaryBackground : unselectedBackground
-            case .secondary:
-                fgColor = isSelected ? secondaryForeground : unselectedForeground
-                bgColor = isSelected ? secondaryBackground : unselectedBackground
-            }
-
+            let fgColor = isSelected ? UIColor.white : UIColor.black
+            let bgColor = isSelected ? UIColor.black : UIColor.systemGray2
+                
             backgroundColor = bgColor
             titleLabel.textColor = fgColor
             checkmarkImageView.tintColor = fgColor

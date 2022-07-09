@@ -1,8 +1,8 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 
-public enum ControlState {
+public enum WCControlState {
     case disabled(String?)
     case hidden
     case normal

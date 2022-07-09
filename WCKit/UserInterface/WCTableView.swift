@@ -1,9 +1,9 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 import UIKit
 
-public final class TableView: UITableView {
+public final class WCTableView: UITableView {
     private static let smallVerticalPadding: CGFloat = 16.0
     private static let largeVerticalPadding: CGFloat = 20.0
     private static let spacing: CGFloat = 16.0
@@ -96,7 +96,7 @@ public final class TableView: UITableView {
         let symbolImageView: UIImageView = {
             let imageView = UIImageView()
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.image = Symbol(.statusError).autoTint(basedOn: .systemRed).image
+            imageView.image = WCSymbol(.statusError).autoTint(basedOn: .systemRed).image
             return imageView
         }()
 
@@ -124,17 +124,17 @@ public final class TableView: UITableView {
 
             symbolImageView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
-                constant: TableView.spacing
+                constant: WCTableView.spacing
             ).isActive = true
 
             symbolImageView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: TableView.largeVerticalPadding
+                constant: WCTableView.largeVerticalPadding
             ).isActive = true
 
             symbolImageView.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: TableView.largeVerticalPadding
+                constant: WCTableView.largeVerticalPadding
             ).isActive = true
 
             symbolImageView.centerYAnchor.constraint(
@@ -143,7 +143,7 @@ public final class TableView: UITableView {
 
             label.leadingAnchor.constraint(
                 equalTo: symbolImageView.layoutMarginsGuide.trailingAnchor,
-                constant: TableView.spacing
+                constant: WCTableView.spacing
             ).isActive = true
 
             label.trailingAnchor.constraint(
@@ -152,12 +152,12 @@ public final class TableView: UITableView {
 
             label.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: TableView.largeVerticalPadding
+                constant: WCTableView.largeVerticalPadding
             ).isActive = true
 
             label.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: TableView.largeVerticalPadding
+                constant: WCTableView.largeVerticalPadding
             ).isActive = true
         }
 
@@ -201,12 +201,12 @@ public final class TableView: UITableView {
 
             spinner.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: TableView.largeVerticalPadding
+                constant: WCTableView.largeVerticalPadding
             ).isActive = true
 
             spinner.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: TableView.largeVerticalPadding
+                constant: WCTableView.largeVerticalPadding
             ).isActive = true
 
             spinner.centerYAnchor.constraint(
@@ -215,7 +215,7 @@ public final class TableView: UITableView {
 
             label.leadingAnchor.constraint(
                 equalTo: spinner.trailingAnchor,
-                constant: TableView.spacing
+                constant: WCTableView.spacing
             ).isActive = true
 
             label.trailingAnchor.constraint(
@@ -250,7 +250,7 @@ public final class TableView: UITableView {
             imageView.contentMode = .scaleAspectFit
             imageView.tintColor = .systemBlue
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.image = Symbol(.checkmark).color(UIColor.tintColor).image
+            imageView.image = WCSymbol(.checkmark).color(UIColor.tintColor).image
             return imageView
         }()
 
@@ -282,17 +282,17 @@ public final class TableView: UITableView {
 
             symbolImageView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: TableView.smallVerticalPadding
+                constant: WCTableView.smallVerticalPadding
             ).isActive = true
 
             symbolImageView.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: TableView.smallVerticalPadding
+                constant: WCTableView.smallVerticalPadding
             ).isActive = true
 
             label.leadingAnchor.constraint(
                 equalTo: symbolImageView.trailingAnchor,
-                constant: TableView.spacing
+                constant: WCTableView.spacing
             ).isActive = true
 
             label.trailingAnchor.constraint(
@@ -305,12 +305,12 @@ public final class TableView: UITableView {
 
             label.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
-                constant: TableView.smallVerticalPadding
+                constant: WCTableView.smallVerticalPadding
             ).isActive = true
 
             label.bottomAnchor.constraint(
                 greaterThanOrEqualTo: contentView.bottomAnchor,
-                constant: TableView.smallVerticalPadding
+                constant: WCTableView.smallVerticalPadding
             ).isActive = true
         }
 
@@ -336,7 +336,7 @@ public extension UITableView {
     }
 
     func makeLoadingCellFor(_ indexPath: IndexPath, text: String = "Loading...") -> UITableViewCell {
-        let cell: TableView.LoadingTVC = makeCellFor(indexPath)
+        let cell: WCTableView.LoadingTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
@@ -346,7 +346,7 @@ public extension UITableView {
     }
 
     func makeTextCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
-        let cell: TableView.TextTVC = makeCellFor(indexPath)
+        let cell: WCTableView.TextTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }
@@ -356,7 +356,7 @@ public extension UITableView {
         text: String,
         isSelected: Bool
     ) -> UITableViewCell {
-        let cell: TableView.SelectListTVC = makeCellFor(indexPath)
+        let cell: WCTableView.SelectListTVC = makeCellFor(indexPath)
         cell.configure(text: text, isSelected: isSelected)
         return cell
     }
@@ -366,7 +366,7 @@ public extension UITableView {
     }
 
     func makeErrorCellFor(_ indexPath: IndexPath, text: String) -> UITableViewCell {
-        let cell: TableView.ErrorTVC = makeCellFor(indexPath)
+        let cell: WCTableView.ErrorTVC = makeCellFor(indexPath)
         cell.configure(text: text)
         return cell
     }

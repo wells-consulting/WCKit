@@ -11,12 +11,12 @@
         <!--Popup MenuVC-->
         <scene sceneID="aJ3-Wk-mwk">
             <objects>
-                <viewController storyboardIdentifier="PopupMenuVC" id="DRQ-md-MhH" customClass="PopupMenuVC" customModule="WCKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WCPopupMenuVC" id="DRQ-md-MhH" customClass="WCPopupMenuVC" customModule="WCKit" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rPD-vF-44Z">
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ql-bd-jvz" customClass="TableView" customModule="WCKit" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Ql-bd-jvz" customClass="WCTableView" customModule="WCKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="540" height="538"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>

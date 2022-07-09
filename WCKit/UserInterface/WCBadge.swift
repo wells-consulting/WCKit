@@ -1,11 +1,11 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import UIKit
 
 let margin: CGFloat = 8.0
 
 @IBDesignable
-public final class Badge: UILabel {
+public final class WCBadge: UILabel {
     var textInsets = UIEdgeInsets(top: margin, left: margin, bottom: margin, right: margin) {
         didSet { invalidateIntrinsicContentSize() }
     }

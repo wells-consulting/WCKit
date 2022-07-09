@@ -1,4 +1,4 @@
-// Copyright © 2016-2022 Velky Brands LLC. All rights reserved.
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import Foundation
 
@@ -196,8 +196,8 @@ public enum HTTP {
 
     public static func get(
         _ url: URL,
-        payload: HTTPPayload,
-        headers: [Header]
+        payload: HTTPPayload = .none,
+        headers: [Header] = []
     ) async throws -> Data? {
         try await send(
             to: url,
