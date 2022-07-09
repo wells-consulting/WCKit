@@ -48,6 +48,7 @@
 		4CB41C9328762C4D00B9ACF7 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C7F28762C4D00B9ACF7 /* DoubleExtension.swift */; };
 		4CB41C9428762C4D00B9ACF7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C8028762C4D00B9ACF7 /* DateExtension.swift */; };
 		4CB41C9528762C4D00B9ACF7 /* IntegerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C8128762C4D00B9ACF7 /* IntegerExtension.swift */; };
+		4CC0B0CC287C737D004C43F4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4CC0B0CB287C737C004C43F4 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		4CB41C7F28762C4D00B9ACF7 /* DoubleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		4CB41C8028762C4D00B9ACF7 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		4CB41C8128762C4D00B9ACF7 /* IntegerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerExtension.swift; sourceTree = "<group>"; };
+		4CC0B0CB287C737C004C43F4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4CDF659428760A2700C972DA /* WCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,6 +189,7 @@
 		4CDF658A28760A2700C972DA = {
 			isa = PBXGroup;
 			children = (
+				4CC0B0CB287C737C004C43F4 /* README.md */,
 				4CDF659628760A2700C972DA /* WCKit */,
 				4CDF659528760A2700C972DA /* Products */,
 			);
@@ -281,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC0B0CC287C737D004C43F4 /* README.md in Resources */,
 				4C7F5E7E28775AB100B9DE80 /* WCPopupMenuVC.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

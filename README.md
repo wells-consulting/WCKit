@@ -1,6 +1,6 @@
 # WCKit
 
-Some simple additions to Swift.
+Some simple additions to Swift and UIKit.
 
 ## Reasoning
 

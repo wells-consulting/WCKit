@@ -2,6 +2,11 @@
 
 import Foundation
 
+//
+// Based on CleanroomLogger.
+// See https://github.com/emaloney/CleanroomLogger
+//
+
 public protocol NonSummaryConvertible {}
 
 public protocol SummaryConvertible {
@@ -22,7 +27,8 @@ let dateTimeFormatter: DateFormatter = {
 
 // You can add custom log recorders like Papertrail or Sentry
 
-public protocol Recorder {
+public protocol LogRecorder {
+    var identifier: String { get }
     var minimumSeverity: Log.Severity { get }
     func log(_ entry: Log.Entry)
 }
@@ -83,31 +89,35 @@ public enum Log {
     }
 
     private static var isStarted = false
-    private static var isRemoteLoggingEnabled = false
-    private static var recorders = [Recorder]()
+    private static var recorders = [LogRecorder]()
 
     private static let appendQueue = DispatchQueue(
-        label: "Log.AppendEntry",
+        label: "WCKit.Log.AppendEntry",
         attributes: .concurrent
     )
 
     private static let formatQueue = DispatchQueue(
-        label: "Log.FormatEntry",
+        label: "WCKit.Log.FormatEntry",
         attributes: .concurrent
     )
 
     // MARK: Lifetime
 
-    public static func initialize(isRemoteLoggingEnabled: Bool) {
-        guard !isStarted else {
+    private static func initializeIfRequired() {
+        guard !isStarted else { return }
+
+        isStarted = true
+        addRecorder(XcodeLogRecorder(minimumSeverity: .verbose))
+    }
+    
+    // MARK: Configuration
+    
+    public static func addRecorder(_ recorder: LogRecorder) {
+        if recorders.first(where: { $0.identifier == recorder.identifier }) != nil {
             return
         }
-
-        Log.isStarted = true
-
-        Log.isRemoteLoggingEnabled = isRemoteLoggingEnabled
-
-        Log.recorders.append(XcodeLogRecorder(minimumSeverity: .verbose))
+        
+        recorders.append(recorder)
     }
 
     // MARK: Fault
@@ -118,8 +128,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: error.localizedDescription,
                     severity: .error,
@@ -137,8 +147,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: message,
                     severity: .error,
@@ -158,8 +168,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: error.localizedDescription,
                     severity: .error,
@@ -177,8 +187,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: message,
                     severity: .error,
@@ -198,8 +208,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: error.localizedDescription,
                     severity: .warning,
@@ -217,8 +227,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: message,
                     severity: .warning,
@@ -238,8 +248,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: message,
                     severity: .info,
@@ -259,8 +269,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: message,
                     severity: .debug,
@@ -280,8 +290,8 @@ public enum Log {
         file: String = #file,
         line: Int = #line
     ) {
-        Log.appendQueue.async {
-            Log.record(
+        appendQueue.async {
+            record(
                 Entry(
                     message: message,
                     severity: .verbose,
@@ -304,22 +314,22 @@ public enum Log {
     ) {
         switch severity {
         case .fault:
-            Log.fault(message, function: function, file: file, line: line)
+            fault(message, function: function, file: file, line: line)
         case .error:
-            Log.error(message, function: function, file: file, line: line)
+            error(message, function: function, file: file, line: line)
         case .warning:
-            Log.warning(message, function: function, file: file, line: line)
+            warning(message, function: function, file: file, line: line)
         case .info:
-            Log.info(message, function: function, file: file, line: line)
+            info(message, function: function, file: file, line: line)
         case .debug:
-            Log.debug(message, function: function, file: file, line: line)
+            debug(message, function: function, file: file, line: line)
         case .verbose:
-            Log.verbose(message, function: function, file: file, line: line)
+            verbose(message, function: function, file: file, line: line)
         }
     }
 
     private static func record(_ entry: Entry) {
-        Log.formatQueue.async {
+        formatQueue.async {
             for recorder in Log.recorders where entry.severity <= recorder.minimumSeverity {
                 recorder.log(entry)
             }
@@ -327,9 +337,11 @@ public enum Log {
     }
 }
 
-// MARK: - Xcode
+// MARK: - Xcode Logger
 
-private class XcodeLogRecorder: Recorder {
+private class XcodeLogRecorder: LogRecorder {
+    let identifier = "xcode"
+    
     let minimumSeverity: Log.Severity
 
     init(minimumSeverity: Log.Severity) {
@@ -347,3 +359,147 @@ private class XcodeLogRecorder: Recorder {
         print(message)
     }
 }
+
+// MARK: - Example Papertrail Logger
+
+// https://www.papertrail.com
+//
+// Papertrail is UDP based. In this example we're using
+// https://github.com/robbiehanson/CocoaAsyncSocket to
+// send the UDP packets.
+
+#if false
+private class PapertrailLogRecorder: LogRecorder {
+    let minimumSeverity: Log.Severity
+
+    init(minimumSeverity: Log.Severity) {
+        self.minimumSeverity = minimumSeverity
+    }
+
+    func log(_ entry: Log.Entry) {
+        let fileNameWithExtension = (entry.file as NSString).pathComponents.last ?? "Unknown"
+        let fileName = fileNameWithExtension.replacingOccurrences(of: ".swift", with: "")
+
+        var parts = [String]()
+        parts.append("<22>1") // Log format prefix
+        parts.append(entry.timestamp.asISO8601String())
+        parts.append("c2smobile") // Sender
+        parts.append(Runtime.deviceName) // Component
+        parts.append("- - -")
+        parts.append(Runtime.buildNumber)
+        parts.append(entry.severity.description)
+
+        parts.append(entry.message)
+        parts.append("(\(fileName):\(entry.line))")
+
+        var message = parts.joined(separator: " ")
+
+        let maximumCharacters = 900 // UDP length requirements
+        if message.count > maximumCharacters {
+            message = message.truncated(maximumCharacters, position: .middle)
+        }
+
+        guard let data = message.data(using: .utf8, allowLossyConversion: true) else { return }
+        PapertrailLogRecorder.getSocket().send(
+            data,
+            toHost: "logs.papertrailapp.com" /* Replace Host */,
+            port: 1234 /* Replace Port Number */,
+            withTimeout: -1,
+            tag: 1
+        )
+    }
+
+    class SocketMonitor: NSObject, GCDAsyncUdpSocketDelegate {
+        func udpSocket(_ socket: GCDAsyncUdpSocket, didNotConnect error: Error?) {
+            let message: String
+            if let error = error {
+                message = "UPD Socket: " + error.localizedDescription
+            } else {
+                message = "UPD socket did not connect."
+            }
+        }
+
+        func udpSocketDidClose(_ socket: GCDAsyncUdpSocket, withError error: Error?) {
+            let message: String
+            if let error = error {
+                message = "UPD socket: " + error.localizedDescription
+            } else {
+                message = "UPD socket closed."
+            }
+        }
+
+        func udpSocket(
+            _ socket: GCDAsyncUdpSocket,
+            didNotSendDataWithTag
+            tag: Int,
+            dueToError error: Error?
+        ) {
+            let message: String
+            if let error = error {
+                message = "UPD socket: " + error.localizedDescription + "."
+            } else {
+                message = "UPD socket did not send data."
+            }
+        }
+    }
+
+    private static var socket: GCDAsyncUdpSocket?
+    private static let socketLock = DispatchSemaphore(value: 1)
+
+    private static func getSocket() -> GCDAsyncUdpSocket {
+        socketLock.wait()
+        defer { socketLock.signal() }
+
+        guard let socket = PapertrailLogRecorder.socket else {
+            let socket = GCDAsyncUdpSocket(
+                delegate: SocketMonitor(),
+                delegateQueue: DispatchQueue(label: "Log.UDP.Monitor")
+            )
+            PapertrailLogRecorder.socket = socket
+            return socket
+        }
+
+        return socket
+    }
+}
+#endif
+
+// MARK: - Example Sentry Logger
+
+// Sentry can report standard logs, but it is most useful
+// to report crashes.
+
+// https://sentry.io/welcome/
+
+#if false
+private class SentryLogRecorder: LogRecorder {
+    var minimumSeverity: Log.Severity
+
+    init(minimumSeverity: Log.Severity) {
+        self.minimumSeverity = minimumSeverity
+    }
+
+    func log(_ entry: Log.Entry) {
+        let fileNameWithExtension = (entry.file as NSString).pathComponents.last ?? "Unknown"
+        let fileName = fileNameWithExtension.replacingOccurrences(of: ".swift", with: "")
+
+        var segments = [String]()
+
+        segments.append(dateTimeFormatter.string(from: entry.timestamp))
+        segments.append(entry.severity.description)
+        segments.append(entry.message)
+        segments.append("(\(fileName):\(entry.line))")
+
+        let message = segments.joined(separator: " ")
+        SentrySDK.capture(message: message) { scope in
+            switch entry.severity {
+            case .debug, .verbose: scope.setLevel(.debug)
+            case .info: scope.setLevel(.info)
+            case .warning: scope.setLevel(.warning)
+            case .error, .fault: scope.setLevel(.error)
+            case .fault: scope.setLevel(.fatal)
+            }
+        }
+    }
+}
+#endif
