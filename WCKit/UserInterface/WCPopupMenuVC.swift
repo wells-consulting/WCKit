@@ -19,7 +19,7 @@ public final class WCPopupMenuVC: UIViewController {
 
         let storyboard = UIStoryboard(
             name: name,
-            bundle: Bundle(for: WCPopupMenuVC.self)
+            bundle: Bundle(for: Self.self)
         )
 
         guard let vc = storyboard.instantiateViewController(withIdentifier: name) as? Self else {

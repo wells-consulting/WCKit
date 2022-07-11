@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scan-->
+        <scene sceneID="Wlj-BZ-9rd">
+            <objects>
+                <viewController storyboardIdentifier="CameraScannerVC" title="Scan" id="PEa-km-3Gq" customClass="CameraScannerVC" customModule="C2SMobile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cki-S3-Iq8">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6R-cO-CQm" userLabel="Video View">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MA2-tO-8LQ" firstAttribute="trailing" secondItem="j6R-cO-CQm" secondAttribute="trailing" id="2Qg-jP-WnH"/>
+                            <constraint firstItem="j6R-cO-CQm" firstAttribute="leading" secondItem="MA2-tO-8LQ" secondAttribute="leading" id="5Ue-sy-spq"/>
+                            <constraint firstItem="MA2-tO-8LQ" firstAttribute="bottom" secondItem="j6R-cO-CQm" secondAttribute="bottom" id="GnJ-wN-VaY"/>
+                            <constraint firstItem="j6R-cO-CQm" firstAttribute="top" secondItem="MA2-tO-8LQ" secondAttribute="top" id="lgy-5C-kof"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MA2-tO-8LQ"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="videoView" destination="j6R-cO-CQm" id="7n3-QZ-1vS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="USa-NW-R0I" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-844.53125" y="2860.546875"/>
+        </scene>
+    </scenes>
+</document>

@@ -6,19 +6,19 @@ import UIKit
 public class WCAlert {
     static let notification = Notification.Name("WCAlert.Present")
     
-    enum Severity: String {
+    public enum Severity: String {
         case success
         case info
         case warning
         case error
     }
 
-    enum Presentation: CustomStringConvertible {
+    public enum Presentation: CustomStringConvertible {
         case modal
         case toast
         case popup(UIViewController, UIView)
 
-        var description: String {
+        public var description: String {
             switch self {
             case .modal:
                 return "modal"
@@ -73,7 +73,7 @@ public class WCAlert {
         NotificationCenter.default.post(name: Self.notification, object: self)
     }
 
-    private static func show(
+    public static func show(
         _ message: String,
         title: String,
         style: Severity,

@@ -49,6 +49,10 @@
 		4CB41C9428762C4D00B9ACF7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C8028762C4D00B9ACF7 /* DateExtension.swift */; };
 		4CB41C9528762C4D00B9ACF7 /* IntegerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB41C8128762C4D00B9ACF7 /* IntegerExtension.swift */; };
 		4CC0B0CC287C737D004C43F4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4CC0B0CB287C737C004C43F4 /* README.md */; };
+		4CC0B0CE287C7CFD004C43F4 /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0B0CD287C7CFD004C43F4 /* Barcode.swift */; };
+		4CC0B0D0287C7D86004C43F4 /* TrackingNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0B0CF287C7D86004C43F4 /* TrackingNumber.swift */; };
+		4CC0B0D4287C7F89004C43F4 /* WCCameraScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0B0D3287C7F89004C43F4 /* WCCameraScannerVC.swift */; };
+		4CC0B0D6287C81A1004C43F4 /* WCCameraScannerVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CC0B0D5287C81A1004C43F4 /* WCCameraScannerVC.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +98,10 @@
 		4CB41C8028762C4D00B9ACF7 /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		4CB41C8128762C4D00B9ACF7 /* IntegerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegerExtension.swift; sourceTree = "<group>"; };
 		4CC0B0CB287C737C004C43F4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4CC0B0CD287C7CFD004C43F4 /* Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
+		4CC0B0CF287C7D86004C43F4 /* TrackingNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingNumber.swift; sourceTree = "<group>"; };
+		4CC0B0D3287C7F89004C43F4 /* WCCameraScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCCameraScannerVC.swift; sourceTree = "<group>"; };
+		4CC0B0D5287C81A1004C43F4 /* WCCameraScannerVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WCCameraScannerVC.storyboard; sourceTree = "<group>"; };
 		4CDF659428760A2700C972DA /* WCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -128,6 +136,8 @@
 				4C7F5E672877550200B9DE80 /* WCActivityView.swift */,
 				4C452E4F2879C853005AF3EF /* WCAlert.swift */,
 				4CB41C7728762C4D00B9ACF7 /* WCBadge.swift */,
+				4CC0B0D5287C81A1004C43F4 /* WCCameraScannerVC.storyboard */,
+				4CC0B0D3287C7F89004C43F4 /* WCCameraScannerVC.swift */,
 				4C7F5E6D2877567E00B9DE80 /* WCControlState.swift */,
 				4C7F5E6B2877565D00B9DE80 /* WCMenubar.swift */,
 				4C452E4D2879BE85005AF3EF /* WCModalAlert.swift */,
@@ -173,15 +183,17 @@
 		4CB41C7928762C4D00B9ACF7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				4CB41C7B28762C4D00B9ACF7 /* AppError.swift */,
+				4CB41C7A28762C4D00B9ACF7 /* AtomicInteger.swift */,
+				4CB41C6D28762C4D00B9ACF7 /* AttributedStringBuilder.swift */,
+				4CC0B0CD287C7CFD004C43F4 /* Barcode.swift */,
 				4C7F5E7F28775B9F00B9DE80 /* Extensions */,
 				4C7F5E4C2877242D00B9DE80 /* HTTP */,
-				4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */,
-				4C7F5E5C28772E8900B9DE80 /* Log.swift */,
-				4CB41C7A28762C4D00B9ACF7 /* AtomicInteger.swift */,
-				4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */,
-				4CB41C6D28762C4D00B9ACF7 /* AttributedStringBuilder.swift */,
-				4CB41C7B28762C4D00B9ACF7 /* AppError.swift */,
 				4CB41C7C28762C4D00B9ACF7 /* JSON.swift */,
+				4C7F5E5C28772E8900B9DE80 /* Log.swift */,
+				4CB41C6E28762C4D00B9ACF7 /* PersistenceController.swift */,
+				4CB41C6C28762C4D00B9ACF7 /* Runtime.swift */,
+				4CC0B0CF287C7D86004C43F4 /* TrackingNumber.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -284,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC0B0D6287C81A1004C43F4 /* WCCameraScannerVC.storyboard in Resources */,
 				4CC0B0CC287C737D004C43F4 /* README.md in Resources */,
 				4C7F5E7E28775AB100B9DE80 /* WCPopupMenuVC.storyboard in Resources */,
 			);
@@ -326,6 +339,7 @@
 				4CB41C9328762C4D00B9ACF7 /* DoubleExtension.swift in Sources */,
 				4C7F5E752877581300B9DE80 /* WCSegmentedButton.swift in Sources */,
 				4CB41C9028762C4D00B9ACF7 /* JSON.swift in Sources */,
+				4CC0B0CE287C7CFD004C43F4 /* Barcode.swift in Sources */,
 				4C7F5E6A287755E400B9DE80 /* UIButtonExtensions.swift in Sources */,
 				4CB41C8E28762C4D00B9ACF7 /* AtomicInteger.swift in Sources */,
 				4CB41C8728762C4D00B9ACF7 /* WCTableView.swift in Sources */,
@@ -336,6 +350,7 @@
 				4CB41C9228762C4D00B9ACF7 /* StringExtension.swift in Sources */,
 				4C7F5E52287729FE00B9DE80 /* HTTPPayload.swift in Sources */,
 				4CB41C9528762C4D00B9ACF7 /* IntegerExtension.swift in Sources */,
+				4CC0B0D4287C7F89004C43F4 /* WCCameraScannerVC.swift in Sources */,
 				4CB41C8C28762C4D00B9ACF7 /* WCBadge.swift in Sources */,
 				4C7F5E6C2877565D00B9DE80 /* WCMenubar.swift in Sources */,
 				4CB41C8528762C4D00B9ACF7 /* WCSymbol.swift in Sources */,
@@ -357,6 +372,7 @@
 				4C7F5E772877591300B9DE80 /* WCPromptLabel.swift in Sources */,
 				4CB41C8828762C4D00B9ACF7 /* UIViewControllerExtension.swift in Sources */,
 				4CB41C8228762C4D00B9ACF7 /* Runtime.swift in Sources */,
+				4CC0B0D0287C7D86004C43F4 /* TrackingNumber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
