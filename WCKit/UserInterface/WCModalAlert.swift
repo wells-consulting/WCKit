@@ -13,7 +13,7 @@ public final class WCModalAlert: UIView {
     init(
         title: String,
         message: String,
-        style: WCAlert.Severity = .info,
+        severity: WCAlert.Severity = .info,
         function: String = #function,
         file: String = #file,
         line: Int = #line
@@ -21,7 +21,7 @@ public final class WCModalAlert: UIView {
         instance = Instance(
             title: title,
             message: message,
-            style: style,
+            severity: severity,
             function: function,
             file: file,
             line: line
@@ -33,7 +33,7 @@ public final class WCModalAlert: UIView {
         instance = Instance(
             title: title,
             message: error.localizedDescription,
-            style: .error,
+            severity: .error,
             function: #function,
             file: #file,
             line: #line
@@ -44,7 +44,7 @@ public final class WCModalAlert: UIView {
     static func show(
         title: String,
         message: String,
-        style: WCAlert.Severity = .info,
+        severity: WCAlert.Severity = .info,
         function: String = #function,
         file: String = #file,
         line: Int = #line
@@ -52,7 +52,7 @@ public final class WCModalAlert: UIView {
         let alertView = Instance(
             title: title,
             message: message,
-            style: style,
+            severity: severity,
             function: function,
             file: file,
             line: line
@@ -70,7 +70,7 @@ public final class WCModalAlert: UIView {
         let alertView = Instance(
             title: title,
             message: error.localizedDescription,
-            style: .error,
+            severity: .error,
             function: function,
             file: file,
             line: line
@@ -98,7 +98,7 @@ public final class WCModalAlert: UIView {
     private class Instance: NSObject {
         private let title: String
         private let message: String
-        private let style: WCAlert.Severity
+        private let severity: WCAlert.Severity
         private let function: String
         private let file: String
         private let line: Int
@@ -119,14 +119,14 @@ public final class WCModalAlert: UIView {
         init(
             title: String,
             message: String,
-            style: WCAlert.Severity,
+            severity: WCAlert.Severity,
             function: String,
             file: String,
             line: Int
         ) {
             self.title = title
             self.message = message
-            self.style = style
+            self.severity = severity
             self.function = function
             self.file = file
             self.line = line
@@ -218,7 +218,7 @@ public final class WCModalAlert: UIView {
 
                     titlebarView.addSubview(titleLabel)
 
-                    switch style {
+                    switch severity {
                     case .success:
                         titlebarView.backgroundColor = .systemGreen
                         titleLabel.textColor = .black

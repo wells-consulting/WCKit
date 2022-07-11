@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 public class WCAlert {
-    static let notification = Notification.Name("WCAlert.Present")
+    public static let notification = Notification.Name("WCAlert.Request")
     
     public enum Severity: String {
         case success
@@ -30,10 +30,10 @@ public class WCAlert {
         }
     }
 
-    let message: String
-    let title: String
-    let severity: Severity
-    let presentation: Presentation
+    public let message: String
+    public let title: String
+    public let severity: Severity
+    public let presentation: Presentation
 
     private let function: String
     private let file: String
@@ -42,7 +42,7 @@ public class WCAlert {
     required init(
         message: String,
         title: String,
-        style: Severity,
+        severity: Severity,
         presentation: Presentation,
         function: String = #function,
         file: String = #file,
@@ -50,7 +50,7 @@ public class WCAlert {
     ) {
         self.title = title
         self.message = message
-        self.severity = style
+        self.severity = severity
         self.presentation = presentation
         self.function = function
         self.file = file
@@ -60,7 +60,7 @@ public class WCAlert {
     private func post() {
         let logMessage =
             """
-            {"alert","presentation":\(presentation.description),style":"\(severity.rawValue)","title":"\(title)","messsage":"\(message)}"
+            {"alert","presentation":\(presentation.description),severity":"\(severity.rawValue)","title":"\(title)","messsage":"\(message)}"
             """
 
         switch severity {
@@ -76,7 +76,7 @@ public class WCAlert {
     public static func show(
         _ message: String,
         title: String,
-        style: Severity,
+        severity: Severity,
         presentation: WCAlert.Presentation,
         function: String = #function,
         file: String = #file,
@@ -85,7 +85,7 @@ public class WCAlert {
         WCAlert(
             message: message,
             title: title,
-            style: style,
+            severity: severity,
             presentation: presentation,
             function: function,
             file: file,
@@ -104,7 +104,7 @@ public class WCAlert {
         WCAlert(
             message: message,
             title: title,
-            style: .success,
+            severity: .success,
             presentation: presentation,
             function: function,
             file: file,
@@ -123,7 +123,7 @@ public class WCAlert {
         WCAlert(
             message: message,
             title: title,
-            style: .info,
+            severity: .info,
             presentation: presentation,
             function: function,
             file: file,
@@ -142,7 +142,7 @@ public class WCAlert {
         WCAlert(
             message: message,
             title: title,
-            style: .warning,
+            severity: .warning,
             presentation: presentation,
             function: function,
             file: file,
@@ -161,7 +161,7 @@ public class WCAlert {
         WCAlert(
             message: message,
             title: title,
-            style: .error,
+            severity: .error,
             presentation: presentation,
             function: function,
             file: file,
@@ -180,7 +180,7 @@ public class WCAlert {
         WCAlert(
             message: error.localizedDescription,
             title: title,
-            style: .error,
+            severity: .error,
             presentation: presentation,
             function: function,
             file: file,

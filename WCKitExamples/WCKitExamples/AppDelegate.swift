@@ -1,9 +1,4 @@
-//
-//  AppDelegate.swift
-//  WCKitExamples
-//
-//  Created by Michael Wells on 7/7/22.
-//
+// Copyright © 2022 Wells Consulting LLC. All rights reserved.
 
 import UIKit
 

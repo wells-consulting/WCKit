@@ -78,7 +78,7 @@ public class WCCameraScannerVC: UIViewController {
             WCAlert.show(
                 "Camera Scanner",
                 title: "Simulator does not support AVFoundation",
-                style: .error,
+                severity: .error,
                 presentation: .modal
             )
         }
@@ -152,7 +152,7 @@ public class WCCameraScannerVC: UIViewController {
             WCAlert.show(
                 error.localizedDescription,
                 title: "Video Capture",
-                style: .error,
+                severity: .error,
                 presentation: .modal
             )
         } catch {
@@ -160,7 +160,7 @@ public class WCCameraScannerVC: UIViewController {
             WCAlert.show(
                 "Unknown error",
                 title: "Video Capture",
-                style: .error,
+                severity: .error,
                 presentation: .modal
             )
         }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C27F22B287CB46E0047091D /* WCToastAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C27F22A287CB46E0047091D /* WCToastAlert.swift */; };
+		4C27F22D287CB8080047091D /* WCPopupAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C27F22C287CB8080047091D /* WCPopupAlertVC.swift */; };
+		4C27F22F287CBB100047091D /* WCPopupAlertVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C27F22E287CBB100047091D /* WCPopupAlertVC.storyboard */; };
 		4C452E4E2879BE85005AF3EF /* WCModalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C452E4D2879BE85005AF3EF /* WCModalAlert.swift */; };
 		4C452E502879C853005AF3EF /* WCAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C452E4F2879C853005AF3EF /* WCAlert.swift */; };
 		4C452E522879CBF3005AF3EF /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C452E512879CBF3005AF3EF /* UIImageViewExtension.swift */; };
@@ -56,6 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C27F22A287CB46E0047091D /* WCToastAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCToastAlert.swift; sourceTree = "<group>"; };
+		4C27F22C287CB8080047091D /* WCPopupAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCPopupAlertVC.swift; sourceTree = "<group>"; };
+		4C27F22E287CBB100047091D /* WCPopupAlertVC.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WCPopupAlertVC.storyboard; sourceTree = "<group>"; };
 		4C452E4D2879BE85005AF3EF /* WCModalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCModalAlert.swift; sourceTree = "<group>"; };
 		4C452E4F2879C853005AF3EF /* WCAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCAlert.swift; sourceTree = "<group>"; };
 		4C452E512879CBF3005AF3EF /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
@@ -141,6 +147,8 @@
 				4C7F5E6D2877567E00B9DE80 /* WCControlState.swift */,
 				4C7F5E6B2877565D00B9DE80 /* WCMenubar.swift */,
 				4C452E4D2879BE85005AF3EF /* WCModalAlert.swift */,
+				4C27F22E287CBB100047091D /* WCPopupAlertVC.storyboard */,
+				4C27F22C287CB8080047091D /* WCPopupAlertVC.swift */,
 				4C7F5E7A287759B700B9DE80 /* WCPopupMenu.swift */,
 				4C7F5E7D28775AB100B9DE80 /* WCPopupMenuVC.storyboard */,
 				4C7F5E782877597E00B9DE80 /* WCPopupMenuVC.swift */,
@@ -149,6 +157,7 @@
 				4CB41C6F28762C4D00B9ACF7 /* WCSymbol.swift */,
 				4C7F5E72287757AB00B9DE80 /* WCTabBar.swift */,
 				4CB41C7228762C4D00B9ACF7 /* WCTableView.swift */,
+				4C27F22A287CB46E0047091D /* WCToastAlert.swift */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -299,6 +308,7 @@
 				4CC0B0D6287C81A1004C43F4 /* WCCameraScannerVC.storyboard in Resources */,
 				4CC0B0CC287C737D004C43F4 /* README.md in Resources */,
 				4C7F5E7E28775AB100B9DE80 /* WCPopupMenuVC.storyboard in Resources */,
+				4C27F22F287CBB100047091D /* WCPopupAlertVC.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +372,9 @@
 				4CB41C8928762C4D00B9ACF7 /* UITableViewExtension.swift in Sources */,
 				4CB41C8628762C4D00B9ACF7 /* UIColorExtension.swift in Sources */,
 				4CB41C9428762C4D00B9ACF7 /* DateExtension.swift in Sources */,
+				4C27F22D287CB8080047091D /* WCPopupAlertVC.swift in Sources */,
 				4C7F5E792877597E00B9DE80 /* WCPopupMenuVC.swift in Sources */,
+				4C27F22B287CB46E0047091D /* WCToastAlert.swift in Sources */,
 				4C7F5E6E2877567E00B9DE80 /* WCControlState.swift in Sources */,
 				4C7F5E4E2877244900B9DE80 /* HTTPError.swift in Sources */,
 				4C7F5E7B287759B700B9DE80 /* WCPopupMenu.swift in Sources */,

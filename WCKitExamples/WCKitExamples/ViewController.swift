@@ -20,10 +20,11 @@ struct ProductResponse: Codable {
 
 class ViewController: UIViewController {
     @IBOutlet private var menubar: WCMenubar!
-    @IBOutlet private var popupMenu: UIButton!
+    @IBOutlet private var popupMenuButton: UIButton!
     @IBOutlet private var badge: UILabel!
     @IBOutlet private var prompt: WCPromptLabel!
     @IBOutlet private var activityViewButton: UIButton!
+    @IBOutlet private var toastButton: UIButton!
     @IBOutlet private var tableView: UITableView!
     
     private var products = LoadedData<[Product]>.loading
@@ -54,6 +55,13 @@ class ViewController: UIViewController {
                 pulseDuration: 5.0) {
                     self.prompt.success("Found inner peace")
                 }
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(requestedAlertNotification(_:)),
+            name: WCAlert.notification,
+            object: nil
         )
         
         Task {
@@ -91,6 +99,16 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction
+    private func toastButtonTapped(_ sender: UIButton) {
+        WCAlert.show(
+            "Time for toast!",
+            title: "Toast",
+            severity: .warning,
+            presentation: .toast
+        )
+    }
+    
     private func loadTableView() async {
         do {
         let response: ProductResponse = try await HTTPRequestBuilder(urlPrefix: "https://dummyjson.com/")
@@ -105,6 +123,55 @@ class ViewController: UIViewController {
                 self.products = .error(error)
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    @objc
+    private func requestedAlertNotification(_ notification: Notification) {
+        guard let alert = notification.object as? WCAlert else { return }
+
+        DispatchQueue.main.async {
+            switch alert.presentation {
+            case .toast:
+                self.toastAlert(alert)
+            case .modal:
+                self.modalAlert(alert)
+            case let .popup(viewController, view):
+                self.popupAlert(alert, in: viewController, at: view)
+            @unknown default:
+                self.modalAlert(alert)
+            }
+        }
+    }
+    
+    private func modalAlert(_ alert: WCAlert) {
+        WCAlert.show(
+            alert.title,
+            title: alert.message,
+            severity: alert.severity,
+            presentation: .modal
+        )
+    }
+    
+    private func popupAlert(
+        _ alert: WCAlert,
+        in parentViewController: UIViewController,
+        at sourceView: UIView
+    ) {
+        let vc = WCPopupAlertVC.make(alert: alert)
+        show(vc, as: .popover, at: sourceView)
+    }
+    
+    private func toastAlert(_ alert: WCAlert) {
+        DispatchQueue.main.async {
+            let toastAlertView = WCToastAlertView(
+                alert: alert,
+                viewController: self
+            )
+
+            toastAlertView.tag = WCToastAlertView.tag
+            self.view.addSubview(toastAlertView)
+            toastAlertView.show()
         }
     }
 }
@@ -174,7 +241,6 @@ enum MenubarParts: Int, CustomStringConvertible, CaseIterable {
     case orange
     case lemon
     case lime
-    case tangerine
 
     var description: String {
         switch self {
@@ -182,7 +248,6 @@ enum MenubarParts: Int, CustomStringConvertible, CaseIterable {
         case .orange: return "Orange"
         case .lemon: return "Lemon"
         case .lime: return "Lime"
-        case .tangerine: return "Tangerine"
         }
     }
 }
